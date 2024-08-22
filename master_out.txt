@@ -1,0 +1,247 @@
+================
+Step 1/2
+================
+Spectral indexing: ansi
+Spectral resolution (L,M,N)=(8,8,1)
+Node resolution (L,M,N)=(16,16,2)
+Boundary ratio = 0.5
+Pressure ratio = 1
+Current ratio = 1
+Perturbation Order = 2
+Objective: force
+Optimizer: lsq-exact
+================
+Building objective: force
+Precomputing transforms
+Timer: Precomputing transforms = 1.01 sec
+Timer: Objective build = 2.49 sec
+Building objective: lcfs R
+Building objective: lcfs Z
+Building objective: fixed Psi
+Building objective: fixed pressure
+Building objective: fixed current
+Building objective: fixed sheet current
+Building objective: self_consistency R
+Building objective: self_consistency Z
+Building objective: lambda gauge
+Building objective: axis R self consistency
+Building objective: axis Z self consistency
+Timer: Objective build = 1.67 sec
+Timer: Linear constraint projection build = 2.97 sec
+Number of parameters: 149
+Number of objectives: 810
+Starting optimization
+Using method: lsq-exact
+   Iteration     Total nfev        Cost      Cost reduction    Step norm     Optimality   
+       0              1          2.766e-01                                    5.698e+00   
+       1              2          2.467e-02      2.519e-01      1.676e-01      8.996e+00   
+       2              3          2.356e-03      2.231e-02      2.441e-01      8.347e-01   
+       3              4          2.637e-05      2.330e-03      3.918e-02      2.180e-01   
+       4              6          2.275e-05      3.623e-06      4.008e-02      1.701e-01   
+       5              7          2.060e-05      2.143e-06      2.024e-02      7.155e-02   
+       6              8          1.921e-05      1.395e-06      2.223e-02      7.059e-02   
+       7              9          1.805e-05      1.158e-06      2.147e-02      8.166e-03   
+       8             11          1.790e-05      1.526e-07      1.090e-02      3.110e-03   
+       9             13          1.787e-05      2.848e-08      5.522e-03      1.082e-03   
+      10             14          1.784e-05      2.892e-08      1.110e-02      2.095e-03   
+      11             15          1.783e-05      1.549e-08      2.240e-02      4.868e-03   
+      12             16          1.776e-05      7.087e-08      6.563e-03      1.812e-03   
+      13             17          1.773e-05      2.834e-08      1.192e-02      1.181e-03   
+      14             18          1.768e-05      4.228e-08      2.364e-02      2.202e-03   
+      15             20          1.765e-05      3.547e-08      1.238e-02      5.877e-04   
+      16             21          1.763e-05      2.061e-08      2.317e-02      2.801e-03   
+      17             22          1.757e-05      5.933e-08      2.428e-02      2.133e-03   
+      18             24          1.754e-05      3.126e-08      1.172e-02      6.028e-04   
+      19             25          1.752e-05      1.500e-08      2.320e-02      2.754e-03   
+Optimization terminated successfully.
+`ftol` condition satisfied.
+         Current function value: 1.752e-05
+         Total delta_x: 1.548e-01
+         Iterations: 19
+         Function evaluations: 25
+         Jacobian evaluations: 20
+Timer: Solution time = 9.09 sec
+Timer: Avg time per step = 454 ms
+Start of solver
+Total (sum of squares):  2.766e-01, 
+Maximum absolute Force error:  5.364e+05 (N)
+Minimum absolute Force error:  1.478e+02 (N)
+Average absolute Force error:  1.021e+05 (N)
+Maximum absolute Force error:  5.740e-02 (normalized)
+Minimum absolute Force error:  1.582e-05 (normalized)
+Average absolute Force error:  1.092e-02 (normalized)
+R boundary error:  0.000e+00 (m)
+Z boundary error:  0.000e+00 (m)
+Fixed Psi error:  0.000e+00 (Wb)
+Fixed pressure profile error:  0.000e+00 (Pa)
+Fixed current profile error:  0.000e+00 (A)
+Fixed sheet current error:  0.000e+00 (~)
+End of solver
+Total (sum of squares):  1.752e-05, 
+Maximum absolute Force error:  1.126e+04 (N)
+Minimum absolute Force error:  1.244e-01 (N)
+Average absolute Force error:  7.344e+02 (N)
+Maximum absolute Force error:  1.205e-03 (normalized)
+Minimum absolute Force error:  1.332e-08 (normalized)
+Average absolute Force error:  7.860e-05 (normalized)
+R boundary error:  0.000e+00 (m)
+Z boundary error:  0.000e+00 (m)
+Fixed Psi error:  0.000e+00 (Wb)
+Fixed pressure profile error:  0.000e+00 (Pa)
+Fixed current profile error:  0.000e+00 (A)
+Fixed sheet current error:  0.000e+00 (~)
+Saving latest iteration
+Timer: Iteration 1 total = 19.3 sec
+================
+Step 2/2
+================
+Spectral indexing: ansi
+Spectral resolution (L,M,N)=(14,14,3)
+Node resolution (L,M,N)=(28,28,6)
+Boundary ratio = 1.0
+Pressure ratio = 1
+Current ratio = 1
+Perturbation Order = 2
+Objective: force
+Optimizer: lsq-exact
+================
+Perturbing equilibrium
+Building objective: force
+Precomputing transforms
+Timer: Precomputing transforms = 1.03 sec
+Timer: Objective build = 2.23 sec
+Building objective: lcfs R
+Building objective: lcfs Z
+Building objective: fixed Psi
+Building objective: fixed pressure
+Building objective: fixed current
+Building objective: fixed sheet current
+Building objective: self_consistency R
+Building objective: self_consistency Z
+Building objective: lambda gauge
+Building objective: axis R self consistency
+Building objective: axis Z self consistency
+Timer: Objective build = 1.85 sec
+Perturbing Rb_lmn, Zb_lmn
+Factorizing linear constraints
+Timer: linear constraint factorize = 2.89 sec
+Computing df
+Timer: df computation = 10.5 sec
+Factoring df
+Timer: df/dx factorization = 1.14 sec
+Computing d^2f
+Timer: d^2f computation = 6.77 sec
+Timer: Objective build = 8.42 ms
+||dx||/||x|| =  4.578e-02
+Timer: Total perturbation = 26.1 sec
+Building objective: force
+Precomputing transforms
+Timer: Precomputing transforms = 77.8 ms
+Timer: Objective build = 264 ms
+Building objective: lcfs R
+Building objective: lcfs Z
+Building objective: fixed Psi
+Building objective: fixed pressure
+Building objective: fixed current
+Building objective: fixed sheet current
+Building objective: self_consistency R
+Building objective: self_consistency Z
+Building objective: lambda gauge
+Building objective: axis R self consistency
+Building objective: axis Z self consistency
+Timer: Objective build = 955 ms
+Timer: Linear constraint projection build = 1.62 sec
+Number of parameters: 1053
+Number of objectives: 5850
+Starting optimization
+Using method: lsq-exact
+   Iteration     Total nfev        Cost      Cost reduction    Step norm     Optimality   
+       0              1          1.435e-01                                    2.025e+02   
+       1              2          4.662e-03      1.389e-01      1.901e-01      3.329e+01   
+       2              3          1.181e-03      3.482e-03      1.955e-01      6.075e+00   
+       3              4          1.338e-04      1.047e-03      1.239e-01      3.069e+00   
+       4              5          4.511e-05      8.864e-05      6.852e-02      1.433e+00   
+       5              6          2.516e-05      1.995e-05      4.002e-02      5.660e-01   
+       6              8          3.104e-07      2.485e-05      1.545e-02      3.945e-02   
+       7             10          4.773e-08      2.627e-07      8.807e-03      2.753e-02   
+       8             12          1.640e-08      3.133e-08      4.208e-03      7.993e-03   
+       9             14          1.444e-08      1.962e-09      2.042e-03      2.427e-03   
+      10             16          1.420e-08      2.333e-10      1.073e-03      5.012e-04   
+      11             17          1.415e-08      5.527e-11      2.015e-03      1.684e-03   
+      12             18          1.402e-08      1.330e-10      1.957e-03      1.564e-03   
+      13             19          1.391e-08      1.029e-10      1.930e-03      1.231e-03   
+      14             20          1.383e-08      8.782e-11      1.932e-03      8.795e-04   
+      15             21          1.375e-08      7.545e-11      1.948e-03      7.136e-04   
+      16             22          1.368e-08      6.648e-11      1.969e-03      6.741e-04   
+      17             23          1.362e-08      6.048e-11      1.991e-03      6.701e-04   
+      18             24          1.357e-08      5.608e-11      2.011e-03      6.714e-04   
+      19             25          1.351e-08      5.249e-11      2.029e-03      6.648e-04   
+      20             26          1.346e-08      4.916e-11      2.044e-03      6.478e-04   
+      21             27          1.342e-08      4.584e-11      2.057e-03      6.231e-04   
+      22             28          1.338e-08      4.259e-11      2.069e-03      5.970e-04   
+      23             29          1.334e-08      3.961e-11      2.079e-03      5.745e-04   
+      24             30          1.330e-08      3.706e-11      2.086e-03      5.580e-04   
+      25             31          1.326e-08      3.496e-11      2.090e-03      5.474e-04   
+      26             32          1.323e-08      3.322e-11      2.091e-03      5.417e-04   
+      27             33          1.320e-08      3.175e-11      2.090e-03      5.401e-04   
+      28             34          1.317e-08      3.047e-11      2.085e-03      5.419e-04   
+      29             35          1.314e-08      2.931e-11      2.078e-03      5.469e-04   
+      30             36          1.311e-08      2.825e-11      2.070e-03      5.548e-04   
+      31             37          1.308e-08      2.725e-11      2.060e-03      5.655e-04   
+      32             38          1.306e-08      2.630e-11      2.049e-03      5.786e-04   
+      33             39          1.303e-08      2.541e-11      2.037e-03      6.087e-04   
+      34             40          1.301e-08      2.456e-11      2.025e-03      6.419e-04   
+      35             41          1.298e-08      2.374e-11      2.012e-03      6.761e-04   
+      36             42          1.296e-08      2.296e-11      1.999e-03      7.115e-04   
+      37             43          1.294e-08      2.221e-11      1.986e-03      7.484e-04   
+      38             44          1.292e-08      2.148e-11      1.974e-03      7.869e-04   
+      39             45          1.290e-08      2.078e-11      1.961e-03      8.266e-04   
+      40             46          1.288e-08      2.011e-11      1.948e-03      8.674e-04   
+      41             47          1.286e-08      1.945e-11      1.936e-03      9.089e-04   
+      42             48          1.284e-08      1.882e-11      1.923e-03      9.505e-04   
+      43             49          1.282e-08      1.821e-11      1.911e-03      9.916e-04   
+      44             50          1.280e-08      1.762e-11      1.900e-03      1.032e-03   
+      45             51          1.279e-08      1.705e-11      1.888e-03      1.070e-03   
+      46             52          1.277e-08      1.650e-11      1.877e-03      1.107e-03   
+      47             53          1.271e-08      5.623e-11      4.660e-04      1.021e-04   
+      48             54          1.271e-08      5.342e-12      9.301e-04      3.488e-04   
+Optimization terminated successfully.
+`ftol` condition satisfied.
+         Current function value: 1.271e-08
+         Total delta_x: 4.846e-01
+         Iterations: 48
+         Function evaluations: 54
+         Jacobian evaluations: 49
+Timer: Solution time = 6.60 min
+Timer: Avg time per step = 8.08 sec
+Start of solver
+Total (sum of squares):  1.435e-01, 
+Maximum absolute Force error:  1.071e+07 (N)
+Minimum absolute Force error:  8.875e+00 (N)
+Average absolute Force error:  7.354e+04 (N)
+Maximum absolute Force error:  7.050e-01 (normalized)
+Minimum absolute Force error:  5.840e-07 (normalized)
+Average absolute Force error:  4.839e-03 (normalized)
+R boundary error:  0.000e+00 (m)
+Z boundary error:  0.000e+00 (m)
+Fixed Psi error:  0.000e+00 (Wb)
+Fixed pressure profile error:  0.000e+00 (Pa)
+Fixed current profile error:  0.000e+00 (A)
+Fixed sheet current error:  0.000e+00 (~)
+End of solver
+Total (sum of squares):  1.271e-08, 
+Maximum absolute Force error:  1.410e+03 (N)
+Minimum absolute Force error:  6.855e-03 (N)
+Average absolute Force error:  2.965e+01 (N)
+Maximum absolute Force error:  9.280e-05 (normalized)
+Minimum absolute Force error:  4.511e-10 (normalized)
+Average absolute Force error:  1.951e-06 (normalized)
+R boundary error:  0.000e+00 (m)
+Z boundary error:  0.000e+00 (m)
+Fixed Psi error:  0.000e+00 (Wb)
+Fixed pressure profile error:  0.000e+00 (Pa)
+Fixed current profile error:  0.000e+00 (A)
+Fixed sheet current error:  0.000e+00 (~)
+Saving latest iteration
+Timer: Iteration 2 total = 7.23 min
+====================
