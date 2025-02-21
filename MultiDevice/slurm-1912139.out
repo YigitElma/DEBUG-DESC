@@ -1,8 +1,0 @@
-Traceback (most recent call last):
-  File "/home/ye2698/DESC/DEBUG-DESC/MultiDevice/dummy-test-case-mpi.py", line 240, in <module>
-    obj2 = Objective(eq, grid2, target2, device_id=1)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ye2698/DESC/DEBUG-DESC/MultiDevice/dummy-test-case-mpi.py", line 62, in __init__
-    self._device = jax.devices(DEVICE_TYPE)[self._device_id]
-                   ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
-IndexError: list index out of range
