@@ -37,7 +37,7 @@ def jit_with_device(method):
 from jax.tree_util import register_pytree_node
 import copy
 
-DEVICE_TYPE = "gpu"
+DEVICE_TYPE = "cpu"
 
 
 class Optimizable:
@@ -113,7 +113,7 @@ class Objective:
         if A is None:
             A = self.A
         return jax.jacfwd(self.compute)(coefs, A)
-    
+
 def special_flatten_obj(obj):
     """Specifies a flattening recipe."""
     children = (obj.opt, obj.grid, obj.target, obj.A)
@@ -278,13 +278,11 @@ coefs[2] = 3
 eq = Optimizable(N, coefs)
 grid1 = jnp.linspace(-jnp.pi, 0, num_nodes, endpoint=False)
 grid2 = jnp.linspace(0, jnp.pi, num_nodes, endpoint=False)
-grid3 = jnp.concatenate([grid1, grid2])
 target1 = grid1**2
 target2 = grid2**2
-target3 = grid3**2
 
 obj1 = Objective(eq, grid1, target1, device_id=0)
-obj2 = Objective(eq, grid2, target2, device_id=1)
+obj2 = Objective(eq, grid2, target2, device_id=0)
 obj1.build()
 obj2.build()
 
@@ -301,12 +299,12 @@ obj2.opt = eq
 from mpi4py import MPI
 
 with ObjectiveFunctionMPI([obj1, obj2], mpi=MPI) as objective:
-    objp_fun.build()
+    objective.build()
     if objective.rank == 0:
         plt.plot(objective.target, "or", label="target")
         plt.plot(objective.compute(), label=f"iter 0")
         step = 0
-        while jnp.linalg.norm(objective.compute_error()) > 1e-3:
+        for _ in range(10):
             J = objective.jac_error()
             f = objective.compute_error()
             eq.coefs = eq.coefs - 1e-1 * jnp.linalg.pinv(J) @ f
@@ -314,3 +312,4 @@ with ObjectiveFunctionMPI([obj1, obj2], mpi=MPI) as objective:
         plt.plot(objective.compute(), label=f"iter last")
         plt.legend()
         plt.title(f"Converged in {step} steps")
+        plt.savefig("mpi.png")
