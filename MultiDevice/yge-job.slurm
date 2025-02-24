@@ -11,5 +11,5 @@ module purge
 module load anaconda3/2024.6
 conda activate desc-env
 
-python free-boundary-parallelized.py
+python multidevice-desc.py
 
