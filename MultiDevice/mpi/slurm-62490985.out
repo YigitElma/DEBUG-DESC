@@ -1,0 +1,42 @@
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   della-r3c1n15
+  Local device: mlx4_0
+--------------------------------------------------------------------------
+Rank 1 computing jac_error
+Rank 2 computing jac_error
+Rank 3 computing jac_error
+Rank 2 computing jac_error
+Rank 1 computing jac_error
+Rank 3 computing jac_error
+Rank 2 computing jac_error
+Rank 1 computing jac_error
+Rank 3 computing jac_error
+Rank 2 computing jac_error
+Rank 3 computing jac_error
+Rank 1 computing jac_error
+Rank 2 computing jac_error
+Rank 1 computing jac_error
+Rank 3 computing jac_error
+Rank 2 computing jac_error
+Rank 1 computing jac_error
+Rank 3 computing jac_error
+Rank 2 computing jac_error
+Rank 1 computing jac_error
+Rank 3 computing jac_error
+Rank 2 computing jac_error
+Rank 1 computing jac_error
+Rank 3 computing jac_error
+Rank 2 computing jac_error
+Rank 1 computing jac_error
+Rank 3 computing jac_error
+Rank 2 computing jac_error
+Rank 1 computing jac_error
+Rank 3 computing jac_error
+Rank 2 STOPPING
+Rank 1 STOPPING
+Rank 3 STOPPING
+[della-r3c1n15:820082] 3 more processes have sent help message help-mpi-btl-openib.txt / error in device init
+[della-r3c1n15:820082] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+slurmstepd: error: *** JOB 62490985 ON della-r3c1n15 CANCELLED AT 2025-02-24T18:29:20 ***

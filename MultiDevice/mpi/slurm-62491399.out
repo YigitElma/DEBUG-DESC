@@ -1,0 +1,3 @@
+srun: Job step aborted: Waiting up to 47 seconds for job step to finish.
+slurmstepd: error: *** JOB 62491399 ON della-h12n18 CANCELLED AT 2025-02-24T18:39:59 ***
+slurmstepd: error: *** STEP 62491399.0 ON della-h12n18 CANCELLED AT 2025-02-24T18:39:59 ***

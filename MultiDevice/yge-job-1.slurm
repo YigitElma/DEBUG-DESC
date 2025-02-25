@@ -4,7 +4,7 @@
 #SBATCH --ntasks=2               # total number of tasks
 #SBATCH --cpus-per-task=1        # cpu-cores per task
 #SBATCH --mem=12G         # memory per cpu-core (4G is default)
-#SBATCH --time=00:05:00          # total run time limit (HH:MM:SS)
+#SBATCH --time=00:15:00          # total run time limit (HH:MM:SS)
 
 module purge
 module load anaconda3/2024.6

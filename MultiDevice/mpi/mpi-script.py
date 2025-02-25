@@ -5,6 +5,46 @@ import matplotlib.pyplot as plt
 
 import functools
 
+DEVICE_TYPE = "cpu"
+
+
+def pconcat(arrays, mode="concat"):
+    """Concatenate arrays that live on different devices.
+
+    Parameters
+    ----------
+    arrays : list of jnp.ndarray
+        Arrays to concatenate.
+    mode : str
+        "concat:, "hstack" or "vstack. Default is "concat"
+
+    Returns
+    -------
+    out : jnp.ndarray
+        Concatenated array that lives on CPU.
+    """
+    if DEVICE_TYPE == "gpu":
+        devices = nvgpu.gpu_info()
+        mem_avail = devices[0]["mem_total"] - devices[0]["mem_used"]
+        # we will use either CPU or GPU[0] for the matrix decompositions, so the
+        # array of float64 should fit into single device
+        size = jnp.array([x.size for x in arrays])
+        size = jnp.sum(size)
+        if size * 8 / (1024**3) > mem_avail:
+            device = jax.devices("cpu")[0]
+        else:
+            device = jax.devices("gpu")[0]
+    else:
+        device = jax.devices("cpu")[0]
+
+    if mode == "concat":
+        out = jnp.concatenate([jax.device_put(x, device=device) for x in arrays])
+    elif mode == "hstack":
+        out = jnp.hstack([jax.device_put(x, device=device) for x in arrays])
+    elif mode == "vstack":
+        out = jnp.vstack([jax.device_put(x, device=device) for x in arrays])
+    return out
+
 
 # we want to JIT the methods of a class on specific devices
 # for convenience, we define a decorator that does this for us, this will use
@@ -36,8 +76,6 @@ def jit_with_device(method):
 
 from jax.tree_util import register_pytree_node
 import copy
-
-DEVICE_TYPE = "cpu"
 
 
 class Optimizable:
@@ -167,25 +205,41 @@ class ObjectiveFunctionMPI:
         self.num_device = len(objectives)
         self.built = False
         targets = [obj.target for obj in self.objectives]
-        self.target = pconcat(targets)
+        self.target = jnp.concatenate(targets)
         self.mpi = mpi
         self.comm = self.mpi.COMM_WORLD
         self.rank = self.comm.Get_rank()
         self.size = self.comm.Get_size()
-        # we will run each objective on different rank
-        assert self.size == len(self.objectives)
+        # assert self.size == len(self.objectives)
+        self.running = True
 
     def __enter__(self):
+        self.worker_loop()
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        pass
+        self.comm.bcast("STOP", root=0)
+        self.running = False
+
+    def worker_loop(self):
+        if self.rank == 0:
+            return  # Root rank won't enter worker loop
+        while self.running:
+            message = self.comm.bcast(None, root=0)
+            if message == "STOP":
+                print(f"Rank {self.rank} STOPPING")
+                break
+            elif message == "jac_error":
+                print(f"Rank {self.rank} computing jac_error")
+                self._compute_jac_error_worker()
+            elif message == "jac":
+                print(f"Rank {self.rank} computing jac")
+                self._compute_jac_worker()
 
     def build(self):
         for obj in self.objectives:
             if not obj.built:
                 obj.build()
-
         self.A = [obj.A for obj in self.objectives]
         self.built = True
 
@@ -195,12 +249,11 @@ class ObjectiveFunctionMPI:
                 A = self.A
             if coefs is None:
                 coefs = [obj.opt.coefs for obj in self.objectives]
-
             fs = [
                 obj.compute(jax.device_put(coefi, device=obj._device), Ai)
                 for obj, coefi, Ai in zip(self.objectives, coefs, A)
             ]
-            return pconcat(fs)
+            return jnp.concatenate(fs)
         else:
             return None
 
@@ -210,44 +263,61 @@ class ObjectiveFunctionMPI:
                 A = self.A
             if coefs is None:
                 coefs = [obj.opt.coefs for obj in self.objectives]
-
             fs = [
                 obj.compute_error(jax.device_put(coefi, device=obj._device), Ai)
                 for obj, coefi, Ai in zip(self.objectives, coefs, A)
             ]
-            return pconcat(fs)
+            return jnp.concatenate(fs)
         else:
             return None
 
     def jac_error(self, coefs=None, A=None):
+        if self.rank == 0:
+            self.comm.bcast("jac_error", root=0)
         if A is None:
             A = self.A
         if coefs is None:
             coefs = [obj.opt.coefs for obj in self.objectives]
-
         obj = self.objectives[self.rank]
         coefi = coefs[self.rank]
         Ai = A[self.rank]
         f = obj.jac_error(jax.device_put(coefi, device=obj._device), Ai)
         f = np.asarray(f)
+        gathered = self.comm.gather(f, root=0)
         if self.rank == 0:
-            fs = self.comm.gatherv(f, root=0)
-        return pconcat(fs)
+            return jnp.concatenate(gathered, axis=0)
+
+    def _compute_jac_error_worker(self):
+        obj = self.objectives[self.rank]
+        coefs = obj.opt.coefs
+        Ai = obj.A
+        f = obj.jac_error(jax.device_put(coefs, device=obj._device), Ai)
+        f = np.asarray(f)
+        self.comm.gather(f, root=0)
 
     def jac(self, coefs=None, A=None):
+        if self.rank == 0:
+            self.comm.bcast("jac", root=0)
         if A is None:
             A = self.A
         if coefs is None:
             coefs = [obj.opt.coefs for obj in self.objectives]
-
         obj = self.objectives[self.rank]
         coefi = coefs[self.rank]
         Ai = A[self.rank]
         f = obj.jac(jax.device_put(coefi, device=obj._device), Ai)
         f = np.asarray(f)
+        gathered = self.comm.gather(f, root=0)
         if self.rank == 0:
-            fs = self.comm.gatherv(f, root=0)
-        return pconcat(fs)
+            return jnp.concatenate(gathered, axis=0)
+
+    def _compute_jac_worker(self):
+        obj = self.objectives[self.rank]
+        coefs = obj.opt.coefs
+        Ai = obj.A
+        f = obj.jac(jax.device_put(coefs, device=obj._device), Ai)
+        f = np.asarray(f)
+        self.comm.gather(f, root=0)
 
     def _flatten(obj):
         """Specifies a flattening recipe."""
@@ -271,45 +341,41 @@ register_pytree_node(
     ObjectiveFunctionMPI._unflatten,
 )
 
-N = 40
-num_nodes = 15
-coefs = np.zeros(N)
-coefs[2] = 3
-eq = Optimizable(N, coefs)
-grid1 = jnp.linspace(-jnp.pi, 0, num_nodes, endpoint=False)
-grid2 = jnp.linspace(0, jnp.pi, num_nodes, endpoint=False)
-target1 = grid1**2
-target2 = grid2**2
-
-obj1 = Objective(eq, grid1, target1, device_id=0)
-obj2 = Objective(eq, grid2, target2, device_id=0)
-obj1.build()
-obj2.build()
-
-# we will put different objectives to different devices
-obj1 = jax.device_put(obj1, obj1._device)
-obj2 = jax.device_put(obj2, obj2._device)
-# if we don't assign the eq again, there will be no connection
-# between obj.opt.coefs. Since they are supposed to be the same optimizable,
-# they need to have same pointers (jax.device_put creates a copy which has
-# different memory location)
-obj1.opt = eq
-obj2.opt = eq
-
 from mpi4py import MPI
 
-with ObjectiveFunctionMPI([obj1, obj2], mpi=MPI) as objective:
-    objective.build()
-    if objective.rank == 0:
-        plt.plot(objective.target, "or", label="target")
-        plt.plot(objective.compute(), label=f"iter 0")
-        step = 0
-        for _ in range(10):
-            J = objective.jac_error()
-            f = objective.compute_error()
-            eq.coefs = eq.coefs - 1e-1 * jnp.linalg.pinv(J) @ f
-            step += 1
-        plt.plot(objective.compute(), label=f"iter last")
-        plt.legend()
-        plt.title(f"Converged in {step} steps")
-        plt.savefig("mpi.png")
+# Example usage
+if __name__ == "__main__":
+    processes = 4
+    N = 40
+    num_nodes_per_worker = 10
+    num_nodes = num_nodes_per_worker * processes
+    coefs = np.zeros(N)
+    coefs[2] = 3
+    eq = Optimizable(N, coefs)
+    objs = []
+    full_grid = jnp.linspace(-jnp.pi, jnp.pi, num_nodes, endpoint=False)
+    for i in range(processes):
+        grid = full_grid[i * num_nodes_per_worker : (i + 1) * num_nodes_per_worker]
+        target = grid**2
+        obj = Objective(eq, grid, target, device_id=0)
+        obj.build()
+        obj = jax.device_put(obj, obj._device)
+        obj.opt = eq
+        objs.append(obj)
+
+    with ObjectiveFunctionMPI(objs, mpi=MPI) as objective:
+        objective.build()
+        if objective.rank == 0:
+            plt.figure()
+            plt.plot(objective.target, "or", label="target")
+            plt.plot(objective.compute(), label=f"iter 0")
+            step = 0
+            for _ in range(30):
+                J = objective.jac_error()
+                f = objective.compute_error()
+                eq.coefs = eq.coefs - 1e-1 * jnp.linalg.pinv(J) @ f
+                step += 1
+            plt.plot(objective.compute(), label=f"iter last")
+            plt.legend()
+            plt.title(f"Converged in {step} steps")
+            plt.savefig("mpi.png")

@@ -1,0 +1,10 @@
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   della-r4c2n6
+  Local device: mlx4_0
+--------------------------------------------------------------------------
+[della-r4c2n6:902553] 1 more process has sent help message help-mpi-btl-openib.txt / error in device init
+[della-r4c2n6:902553] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+Running serial computations before MPI
+slurmstepd: error: *** JOB 62486145 ON della-r4c2n6 CANCELLED AT 2025-02-24T16:08:55 DUE TO TIME LIMIT ***
