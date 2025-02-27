@@ -176,29 +176,6 @@ def special_unflatten_obj(aux_data, children):
 register_pytree_node(Optimizable, special_flatten_opt, special_unflatten_opt)
 register_pytree_node(Objective, special_flatten_obj, special_unflatten_obj)
 
-N = 40
-num_nodes = 30
-coefs = np.zeros(N)
-coefs[2] = 3
-eq = Optimizable(N, coefs)
-grid = jnp.linspace(-jnp.pi, jnp.pi, num_nodes, endpoint=False)
-target = grid**2
-obj = Objective(eq, grid, target)
-obj.build()
-
-plt.plot(obj.target, "or", label="target")
-plt.plot(obj.compute(eq.coefs, obj.A), label=f"iter 0")
-step = 0
-while jnp.linalg.norm(obj.compute_error(eq.coefs, obj.A)) > 1e-3:
-    J = obj.jac_error(eq.coefs, obj.A)
-    f = obj.compute_error(eq.coefs, obj.A)
-    eq.coefs = eq.coefs - 1e-1 * jnp.linalg.pinv(J) @ f
-    step += 1
-plt.plot(obj.compute(eq.coefs, obj.A), label=f"iter last")
-plt.legend()
-plt.title(f"Converged in {step} steps")
-plt.savefig("normal.png")
-
 class ObjectiveFunctionMPI:
     def __init__(self, objectives, mpi):
         self.objectives = objectives
@@ -210,29 +187,37 @@ class ObjectiveFunctionMPI:
         self.comm = self.mpi.COMM_WORLD
         self.rank = self.comm.Get_rank()
         self.size = self.comm.Get_size()
-        # assert self.size == len(self.objectives)
+        assert self.size == len(self.objectives)
         self.running = True
 
     def __enter__(self):
+        # when entering the context manager, we start the worker loop
+        # this will allow the root rank to send messages to the workers
+        # to compute and to stop
         self.worker_loop()
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        self.comm.bcast("STOP", root=0)
+        # this will be called when the context manager exits
+        # we send a stop message to the workers
+        if self.rank == 0:
+            self.comm.bcast(("STOP", None, None), root=0)
         self.running = False
 
     def worker_loop(self):
         if self.rank == 0:
             return  # Root rank won't enter worker loop
         while self.running:
-            message = self.comm.bcast(None, root=0)
-            if message == "STOP":
+            message = (None, None, None)
+            message = self.comm.bcast(message, root=0)
+            print(f"Rank {self.rank} received message {message}")
+            if message[0] == "STOP":
                 print(f"Rank {self.rank} STOPPING")
                 break
-            elif message == "jac_error":
+            elif message[0] == "jac_error":
                 print(f"Rank {self.rank} computing jac_error")
                 self._compute_jac_error_worker()
-            elif message == "jac":
+            elif message[0] == "jac":
                 print(f"Rank {self.rank} computing jac")
                 self._compute_jac_worker()
 
@@ -273,18 +258,19 @@ class ObjectiveFunctionMPI:
 
     def jac_error(self, coefs=None, A=None):
         if self.rank == 0:
-            self.comm.bcast("jac_error", root=0)
-        if A is None:
-            A = self.A
-        if coefs is None:
-            coefs = [obj.opt.coefs for obj in self.objectives]
-        obj = self.objectives[self.rank]
-        coefi = coefs[self.rank]
-        Ai = A[self.rank]
-        f = obj.jac_error(jax.device_put(coefi, device=obj._device), Ai)
-        f = np.asarray(f)
-        gathered = self.comm.gather(f, root=0)
-        if self.rank == 0:
+            message = ("jac_error", [1, 2, 3], np.array([10, 20, 30]))
+            self.comm.bcast(message, root=0)
+            if A is None:
+                A = self.A
+            if coefs is None:
+                coefs = [obj.opt.coefs for obj in self.objectives]
+            obj = self.objectives[self.rank]
+            coefi = coefs[self.rank]
+            Ai = A[self.rank]
+            f = obj.jac_error(jax.device_put(coefi, device=obj._device), Ai)
+            f = np.asarray(f)
+            gathered = self.comm.gather(f, root=0)
+            # print(len(gathered), [gathered[i].shape for i in range(len(gathered))])
             return jnp.concatenate(gathered, axis=0)
 
     def _compute_jac_error_worker(self):
@@ -379,3 +365,5 @@ if __name__ == "__main__":
             plt.legend()
             plt.title(f"Converged in {step} steps")
             plt.savefig("mpi.png")
+
+    print(f"{objective.rank} DONE")
