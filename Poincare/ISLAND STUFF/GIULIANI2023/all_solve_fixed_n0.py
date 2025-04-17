@@ -193,7 +193,7 @@ def all_above(equ):
         solve_poincare(eqp, maxiter=1000, ftol=5e-4, xtol=0, gtol=0)
     eqp.surface = eqp.get_surface_at(rho=1)
     eqp.xsection = eqp.get_surface_at(zeta=0)
-    eqp.save(f"./eq-{mode}/eq-{mode}-{paper}-island-L{eqp.L}M{eqp.M}N{eqp.N}.h5")
+    eqp.save(f"eq-{mode}/eq-{mode}-{paper}-island-L{eqp.L}M{eqp.M}N{eqp.N}.h5")
     fig, ax = plot_comparison(
         eqs=[equ, eqp],
         labels=[
@@ -202,7 +202,7 @@ def all_above(equ):
         ],
     )
     fig.savefig(
-        f"./eq-{mode}/plot-{paper}-surface-compare-{mode}-L{eqp.L}M{eqp.M}N{eqp.N}.png",
+        f"eq-{mode}/plot-{paper}-surface-compare-{mode}-L{eqp.L}M{eqp.M}N{eqp.N}.png",
         dpi=1000,
     )
     plt.close()
@@ -221,22 +221,22 @@ def all_above(equ):
             surf2, eqp, num_coils=8, return_k=return_k
         )
     optimized_coilset2.save(
-        f"./eq-{mode}/surface-K-{paper}-{mode}-L{eqp.L}M{eqp.M}N{eqp.N}.h5"
+        f"eq-{mode}/surface-K-{paper}-{mode}-L{eqp.L}M{eqp.M}N{eqp.N}.h5"
     )
     fig, ax = plot_field_lines(
         optimized_coilset2, eqp, nrho=18, ntransit=200, size=0.2, outside=False
     )
     fig.suptitle(f"Field Line Trace after {mode} L={eqp.L} M={eqp.M} N={eqp.N}")
     fig.savefig(
-        f"./eq-{mode}/plot-{paper}-{mode}-L{eqp.L}M{eqp.M}N{eqp.N}.png", dpi=1000
+        f"eq-{mode}/plot-{paper}-{mode}-L{eqp.L}M{eqp.M}N{eqp.N}.png", dpi=1000
     )
     plt.close()
 
-    fig, ax = plot_1d(equ, "iota", label="Original")
-    fig, ax = plot_1d(eqp, "iota", label=f"{mode}", ax=ax)
+    fig, ax = plot_1d(equ, "iota", label="Original", linecolor="r")
+    fig, ax = plot_1d(eqp, "iota", label=f"{mode}", ax=ax, linecolor="b")
     fig.suptitle(f"L={eqp.L}M={eqp.M}N={eqp.N}")
     fig.savefig(
-        f"./eq-{mode}/iota-{paper}-{mode}-L{eqp.L}M{eqp.M}N{eqp.N}.png", dpi=500
+        f"eq-{mode}/iota-{paper}-{mode}-L{eqp.L}M{eqp.M}N{eqp.N}.png", dpi=500
     )
     plt.close()
 
