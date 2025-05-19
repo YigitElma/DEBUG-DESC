@@ -67,9 +67,9 @@ def monitor_vram(proc, interval, vram_usage, timestamps):
 
 
 if __name__ == "__main__":
-    mode = "GPU"  # "CPU" or "GPU"
-    res = 14
-    maxiter = 5
+    mode = "CPU"  # "CPU" or "GPU"
+    res = 12
+    maxiter = 2
     interval = 0.1  # seconds between samples
 
     mem_usage_gpu = []
@@ -103,9 +103,10 @@ if __name__ == "__main__":
     if mode == "GPU":
         sampler2.join()
 
-    branch = "pr-before-gc"
+    branch = "master"
     # plotting
     mem_usage_cpu = np.asarray(mem_usage_cpu)
+    mem_usage_cpu = mem_usage_cpu - min(mem_usage_cpu)
     times_cpu = np.asarray(ts_cpu) - ts_cpu[0]
     np.savetxt(f"{branch}_memory_cpu.txt", mem_usage_cpu)
     np.savetxt(f"{branch}_time_cpu.txt", times_cpu)
