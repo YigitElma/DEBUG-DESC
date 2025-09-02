@@ -27,6 +27,8 @@ else:
     device = devices[0]
 print(f"Rank {rank} using device {device}")
 
+comm.Barrier()
+
 # Allocate a JAX array on that device
 N = 5
 
