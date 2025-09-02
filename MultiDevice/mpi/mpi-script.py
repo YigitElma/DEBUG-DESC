@@ -74,6 +74,7 @@ def jit_with_device(method):
 
     return wrapper
 
+
 from jax.tree_util import register_pytree_node
 import copy
 
@@ -152,6 +153,7 @@ class Objective:
             A = self.A
         return jax.jacfwd(self.compute)(coefs, A)
 
+
 def special_flatten_obj(obj):
     """Specifies a flattening recipe."""
     children = (obj.opt, obj.grid, obj.target, obj.A)
@@ -175,6 +177,7 @@ def special_unflatten_obj(aux_data, children):
 # Global registration
 register_pytree_node(Optimizable, special_flatten_opt, special_unflatten_opt)
 register_pytree_node(Objective, special_flatten_obj, special_unflatten_obj)
+
 
 class ObjectiveFunctionMPI:
     def __init__(self, objectives, mpi):
