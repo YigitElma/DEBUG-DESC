@@ -1,4 +1,3 @@
-
 import os
 idx = int(os.environ["SLURM_ARRAY_TASK_ID"])
 
@@ -35,7 +34,7 @@ def boozer_to_cylindrical(field, s, theta, zeta):
         return R[0], phi[0], Z[0]
     else:
         return R, phi, Z
-    
+
 
 boozmn_filename = "booz_xform/boozmn_LandremanPaul2021_QH_reactorScale_lowres_reference.nc"
 field = BoozerRadialInterpolant(boozmn_filename, order=3, no_K=True)
@@ -46,6 +45,6 @@ end = int((idx+1)*N)
 traj_booz = np.loadtxt("run_firm3d/precise_QH/trajectory_data_tol_1e-10_resolution_96_tmax_0.001_trapped.txt")
 R, phi, Z = boozer_to_cylindrical(field, traj_booz[start:end, 1], traj_booz[start:end, 2], traj_booz[start:end, 3])
 
-np.savetxt(f"converted/R_job{idx}_booz.txt", R)
-np.savetxt(f"converted/Z_job{idx}_booz.txt", Z)
-np.savetxt(f"converted/phi_job{idx}_booz.txt", phi)
+np.savetxt(f"converted-coords/R_job{idx}_booz.txt", R)
+np.savetxt(f"converted-coords/Z_job{idx}_booz.txt", Z)
+np.savetxt(f"converted-coords/phi_job{idx}_booz.txt", phi)
