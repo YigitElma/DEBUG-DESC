@@ -6,8 +6,8 @@
 #SBATCH --ntasks=1               # total number of tasks across all nodes
 #SBATCH --cpus-per-task=8        # cpu-cores per task (>1 if multi-threaded tasks)
 #SBATCH --mem-per-cpu=16G         # memory per cpu-core (4G is default)
-#SBATCH --time=00:45:00          # total run time limit (HH:MM:SS)
-#SBATCH --array=0-20              # job array with index values 0, 1, 2, 3, 4
+#SBATCH --time=01:00:00          # total run time limit (HH:MM:SS)
+#SBATCH --array=12-19             # job array with index values 0, 1, 2, 3, 4
 
 echo "My SLURM_ARRAY_JOB_ID is $SLURM_ARRAY_JOB_ID."
 echo "My SLURM_ARRAY_TASK_ID is $SLURM_ARRAY_TASK_ID"
