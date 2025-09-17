@@ -1,0 +1,66 @@
+Total of 2 ranks
+Rank 0 sees devices [CudaDevice(id=0), CudaDevice(id=1)]
+Rank 0 using device cuda:0
+Traceback (most recent call last):
+  File "src/mpi4py/MPI.src/asbuffer.pxi", line 63, in mpi4py.MPI.PyMPI_GetBuffer
+BufferError: INVALID_ARGUMENT: Python buffer protocol is only defined for CPU buffers.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ye2698/DESC/DEBUG/CUDA-mpi-jax.py", line 38, in <module>
+    comm.Bcast(sendbuf, root=0)
+  File "src/mpi4py/MPI.src/Comm.pyx", line 921, in mpi4py.MPI.Comm.Bcast
+  File "src/mpi4py/MPI.src/msgbuffer.pxi", line 505, in mpi4py.MPI._p_msg_cco.for_bcast
+  File "src/mpi4py/MPI.src/msgbuffer.pxi", line 467, in mpi4py.MPI._p_msg_cco.for_cco_send
+  File "src/mpi4py/MPI.src/msgbuffer.pxi", line 151, in mpi4py.MPI.message_simple
+  File "src/mpi4py/MPI.src/msgbuffer.pxi", line 90, in mpi4py.MPI.message_basic
+  File "src/mpi4py/MPI.src/asbuffer.pxi", line 327, in mpi4py.MPI.getbuffer
+  File "src/mpi4py/MPI.src/asbuffer.pxi", line 70, in mpi4py.MPI.PyMPI_GetBuffer
+  File "src/mpi4py/MPI.src/asbuffer.pxi", line 66, in mpi4py.MPI.PyMPI_GetBuffer
+  File "src/mpi4py/MPI.src/asdlpack.pxi", line 257, in mpi4py.MPI.Py_GetDLPackBuffer
+  File "/home/ye2698/.conda/envs/mpi-cuda/lib/python3.12/site-packages/jax/_src/array.py", line 457, in __dlpack__
+    return to_dlpack(self, stream=stream,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ye2698/.conda/envs/mpi-cuda/lib/python3.12/site-packages/jax/_src/dlpack.py", line 139, in to_dlpack
+    return _to_dlpack(
+           ^^^^^^^^^^^
+  File "/home/ye2698/.conda/envs/mpi-cuda/lib/python3.12/site-packages/jax/_src/dlpack.py", line 65, in _to_dlpack
+    return xla_client._xla.buffer_to_dlpack_managed_tensor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+jaxlib._jax.XlaRuntimeError: INTERNAL: CUDA error: : CUDA_ERROR_INVALID_HANDLE: invalid resource handle
+Total of 2 ranks
+Rank 1 sees devices [CudaDevice(id=0), CudaDevice(id=1)]
+Rank 1 using device cuda:1
+Traceback (most recent call last):
+  File "src/mpi4py/MPI.src/asbuffer.pxi", line 63, in mpi4py.MPI.PyMPI_GetBuffer
+BufferError: INVALID_ARGUMENT: Python buffer protocol is only defined for CPU buffers.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ye2698/DESC/DEBUG/CUDA-mpi-jax.py", line 41, in <module>
+    comm.Bcast(sendbuf, root=0)
+  File "src/mpi4py/MPI.src/Comm.pyx", line 921, in mpi4py.MPI.Comm.Bcast
+  File "src/mpi4py/MPI.src/msgbuffer.pxi", line 508, in mpi4py.MPI._p_msg_cco.for_bcast
+  File "src/mpi4py/MPI.src/msgbuffer.pxi", line 484, in mpi4py.MPI._p_msg_cco.for_cco_recv
+  File "src/mpi4py/MPI.src/msgbuffer.pxi", line 151, in mpi4py.MPI.message_simple
+  File "src/mpi4py/MPI.src/msgbuffer.pxi", line 90, in mpi4py.MPI.message_basic
+  File "src/mpi4py/MPI.src/asbuffer.pxi", line 327, in mpi4py.MPI.getbuffer
+  File "src/mpi4py/MPI.src/asbuffer.pxi", line 70, in mpi4py.MPI.PyMPI_GetBuffer
+  File "src/mpi4py/MPI.src/asbuffer.pxi", line 66, in mpi4py.MPI.PyMPI_GetBuffer
+  File "src/mpi4py/MPI.src/asdlpack.pxi", line 257, in mpi4py.MPI.Py_GetDLPackBuffer
+  File "/home/ye2698/.conda/envs/mpi-cuda/lib/python3.12/site-packages/jax/_src/array.py", line 457, in __dlpack__
+    return to_dlpack(self, stream=stream,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ye2698/.conda/envs/mpi-cuda/lib/python3.12/site-packages/jax/_src/dlpack.py", line 139, in to_dlpack
+    return _to_dlpack(
+           ^^^^^^^^^^^
+  File "/home/ye2698/.conda/envs/mpi-cuda/lib/python3.12/site-packages/jax/_src/dlpack.py", line 65, in _to_dlpack
+    return xla_client._xla.buffer_to_dlpack_managed_tensor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+jaxlib._jax.XlaRuntimeError: INTERNAL: CUDA error: : CUDA_ERROR_INVALID_HANDLE: invalid resource handle
+srun: error: della-l07g6: task 1: Exited with exit code 1
+srun: Terminating StepId=331202.0
+slurmstepd: error: *** STEP 331202.0 ON della-l07g6 CANCELLED AT 2025-09-02T12:19:38 ***
+srun: error: della-l07g6: task 0: Exited with exit code 1

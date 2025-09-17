@@ -8,7 +8,8 @@ size = comm.Get_size()
 
 # --- Option: force each rank to only see its own GPU ---
 # Uncomment this block to restrict visible devices:
-# os.environ["CUDA_VISIBLE_DEVICES"] = str(rank)
+os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+os.environ["CUDA_VISIBLE_DEVICES"] = str(rank)
 
 import jax
 import jax.numpy as jnp
@@ -18,6 +19,7 @@ devices = jax.devices("gpu")
 if not devices:
     raise RuntimeError("No GPUs visible to rank %d" % rank)
 
+print(f"Total of {size} ranks")
 print(f"Rank {rank} sees devices {devices}")
 
 if len(devices) == size:
