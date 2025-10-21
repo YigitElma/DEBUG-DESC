@@ -74,10 +74,10 @@ Vorg = eq00.compute("V")["V"]
 grid = LinearGrid(M=eq.M, N=eq.N, NFP=eq.NFP, rho=np.array([0.6, 0.8, 1.0]), sym=True)
 
 # weights for objectives
-w_qs = sys.argv[1]
-w_ar = sys.argv[2]
-w_vol = sys.argv[3]
-w_iota = sys.argv[4]
+w_qs = float(sys.argv[1])
+w_ar = float(sys.argv[2])
+w_vol = float(sys.argv[3])
+w_iota = float(sys.argv[4])
 
 file_identifier = f"poincare_optimize_QA_wqs{w_qs}_war{w_ar}_wvol{w_vol}_wiota{w_iota}"
 
