@@ -13,7 +13,7 @@ for w_qs in weights_qs:
             for w_iota in weights_iota:
                 file_identifier = f"poincare_optimize_QA_wqs{w_qs}_war{w_ar}_wvol{w_vol}_wiota{w_iota}"
 
-                if os.path.exists(f"eqfam_{file_identifier}.h5"):
+                if os.path.exists(f"./scan_results/eqfam_{file_identifier}.h5"):
                     print(
                         f"Skipping weights wqs={w_qs}, war={w_ar}, wvol={w_vol}, wiota={w_iota} since output file exists."
                     )

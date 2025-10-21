@@ -138,7 +138,7 @@ def run_step(n, eqfam, ftol=1e-2, **kwargs):
 
 eqfam = run_step(8, eqfam, ftol=1e-3)
 plot_boozer_surface(eqfam[-1])
-plt.savefig(f"boozer_{file_identifier}.png", dpi=300)
+plt.savefig(f"./scan_results/boozer_{file_identifier}.png", dpi=300)
 
 
 eq_rotated = eqfam[-1].copy()
@@ -148,14 +148,14 @@ plot_comparison(
     labels=["Initial", "Poincare", "precise_QA"],
     color=["black", "blue", "red"],
 )
-plt.savefig(f"surfaces_{file_identifier}.png", dpi=500)
+plt.savefig(f"./scan_results/surfaces_{file_identifier}.png", dpi=500)
 
 fig, ax = plot_1d(eqfam[-1], "iota", label="Poincare Optimized", color="blue")
 plot_1d(eq00, "iota", ax=ax, label="precise_QA", color="red")
 plt.legend()
-plt.savefig(f"iota_{file_identifier}.png", dpi=300)
+plt.savefig(f"./scan_results/iota_{file_identifier}.png", dpi=300)
 
 plot_section(eqfam[-1], "|F|_normalized", log=True)
-plt.savefig(f"force_{file_identifier}.png", dpi=500)
+plt.savefig(f"./scan_results/force_{file_identifier}.png", dpi=500)
 
-eqfam.save(f"eqfam_{file_identifier}.h5")
+eqfam.save(f"./scan_results/eqfam_{file_identifier}.h5")
