@@ -20,21 +20,21 @@ for w_qs in weights_qs:
                     continue
 
                 slurm_str = f"""#!/bin/bash
-                #SBATCH --job-name={f"wqs{w_qs}_war{w_ar}_wvol{w_vol}_wiota{w_iota}"}
-                #SBATCH --nodes=1                # node count
-                #SBATCH -n 8        # cpu-cores per task (>1 if multi-threaded tasks)
-                #SBATCH --mem=32G         # memory per cpu-core (4G is default)
-                #SBATCH --time=00:45:00          # total run time limit (HH:MM:SS)
-                #SBATCH --gres=gpu:1
-                #SBATCH --constraint=nomig
-                #SBATCH -o slurm_{file_identifier}.out
+#SBATCH --job-name={f"wqs{w_qs}_war{w_ar}_wvol{w_vol}_wiota{w_iota}"}
+#SBATCH --nodes=1                # node count
+#SBATCH -n 8        # cpu-cores per task (>1 if multi-threaded tasks)
+#SBATCH --mem=32G         # memory per cpu-core (4G is default)
+#SBATCH --time=00:45:00          # total run time limit (HH:MM:SS)
+#SBATCH --gres=gpu:1
+#SBATCH --constraint=nomig
+#SBATCH -o slurm_{file_identifier}.out
 
-                module purge
-                module load anaconda3/2024.10 
-                conda activate desc-env
+module purge
+module load anaconda3/2024.10 
+conda activate desc-env
 
-                python  run_qa_weights.py {w_qs} {w_ar} {w_vol} {w_iota}
-                """
+python  run_qa_weights.py {w_qs} {w_ar} {w_vol} {w_iota}
+"""
                 with open("job.slurm_scan", "w+") as f:
                     f.write(slurm_str)
                 result = subprocess.run(
