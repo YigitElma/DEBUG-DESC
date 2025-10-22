@@ -11,44 +11,44 @@ Using JAX backend: jax version=0.6.2, jaxlib version=0.6.2, dtype=float64.
 Using device: NVIDIA A100-PCIE-40GB (id=0), with 40.00 GB available memory.
 Building objective: QS two-term
 Precomputing transforms
-Timer: Precomputing transforms = 341 ms
+Timer: Precomputing transforms = 339 ms
 Building objective: aspect ratio
 Precomputing transforms
-Timer: Precomputing transforms = 39.9 ms
+Timer: Precomputing transforms = 39.6 ms
 Building objective: volume
 Precomputing transforms
-Timer: Precomputing transforms = 39.8 ms
+Timer: Precomputing transforms = 39.5 ms
 Building objective: rotational transform
 Precomputing transforms
-Timer: Precomputing transforms = 301 ms
-Timer: Objective build = 812 ms
+Timer: Precomputing transforms = 298 ms
+Timer: Objective build = 805 ms
 Building objective: force
 Precomputing transforms
-Timer: Precomputing transforms = 531 ms
-Timer: Objective build = 856 ms
-Timer: Objective build = 3.10 ms
-Timer: Eq Update LinearConstraintProjection build = 2.26 sec
-Timer: Proximal projection build = 10.3 sec
+Timer: Precomputing transforms = 526 ms
+Timer: Objective build = 846 ms
+Timer: Objective build = 3.07 ms
+Timer: Eq Update LinearConstraintProjection build = 2.23 sec
+Timer: Proximal projection build = 10.2 sec
 Building objective: fixed cross-section R
 Building objective: fixed cross-section Z
 Building objective: fixed pressure
 Building objective: fixed current
 Building objective: fixed Psi
-Timer: Objective build = 288 ms
-Timer: LinearConstraintProjection build = 843 ms
+Timer: Objective build = 282 ms
+Timer: LinearConstraintProjection build = 826 ms
 Number of parameters: 45
 Number of objectives: 478
-Timer: Initializing the optimization = 11.5 sec
+Timer: Initializing the optimization = 11.3 sec
 
 Starting optimization
 Using method: proximal-lsq-exact
 Solver options:
 ------------------------------------------------------------
-Maximum Function Evaluations       : 751
+Maximum Function Evaluations       : 1251
 Maximum Allowed Total Δx Norm      : inf
 Scaled Termination                 : True
 Trust Region Method                : qr
-Initial Trust Radius               : 1.142e+01
+Initial Trust Radius               : 1.681e+01
 Maximum Trust Radius               : inf
 Minimum Trust Radius               : 2.220e-16
 Trust Radius Increase Ratio        : 2.000e+00
@@ -58,4 +58,4 @@ Trust Radius Decrease Threshold    : 2.500e-01
 ------------------------------------------------------------ 
 
    Iteration     Total nfev        Cost      Cost reduction    Step norm     Optimality   
-       0              1          7.751e+02                                    1.017e+01   
+       0              1          2.072e+01                                    3.964e+00   
