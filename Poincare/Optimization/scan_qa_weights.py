@@ -59,10 +59,10 @@ for w_qs in weights_qs:
 #SBATCH --time=00:45:00          # total run time limit (HH:MM:SS)
 #SBATCH --gres=gpu:1
 #SBATCH --constraint=nomig
-#SBATCH -o slurm_{file_identifier}.out
+#SBATCH -o ./scan_results/slurm_{file_identifier}.out
 
 module purge
-module load anaconda3/2024.10 
+module load anaconda3/2024.10
 conda activate desc-env
 
 python  run_qa_weights.py {w_qs} {w_ar} {w_vol} {w_iota}
