@@ -85,7 +85,7 @@ def run_step(n, eqfam, ftol=1e-2, **kwargs):
         (
             QuasisymmetryTwoTerm(
                 eq=eqfam[-1],
-                helicity=(1, 0),
+                helicity=(1, eqfam[-1].NFP),
                 grid=grid,
                 normalize=False,
                 weight=w_qs,
