@@ -1,0 +1,68 @@
+/home/ye2698/DESC/desc/integrals/_interp_utils.py:19: UserWarning: 
+jax-finufft is not installed.
+If you want to use NUFFTs, follow the DESC installation instructions.
+Otherwise you must set the parameter nufft_eps to zero
+when computing effective ripple, Gamma_c, and any other
+computations that involve bounce integrals.
+
+  warnings.warn(
+DESC version=0.15.0+425.ga8f1b2dda.
+Using JAX backend: jax version=0.6.2, jaxlib version=0.6.2, dtype=float64.
+Using device: NVIDIA A100-PCIE-40GB (id=0), with 40.00 GB available memory.
+Building objective: QS two-term
+Precomputing transforms
+Timer: Precomputing transforms = 347 ms
+Building objective: aspect ratio
+Precomputing transforms
+Timer: Precomputing transforms = 39.9 ms
+Building objective: volume
+Precomputing transforms
+Timer: Precomputing transforms = 39.7 ms
+Timer: Objective build = 477 ms
+Building objective: force
+Precomputing transforms
+Timer: Precomputing transforms = 412 ms
+Timer: Objective build = 866 ms
+Timer: Objective build = 3.03 ms
+Timer: Eq Update LinearConstraintProjection build = 2.27 sec
+Timer: Proximal projection build = 22.9 sec
+Building objective: fixed cross-section R
+Building objective: fixed cross-section Z
+Building objective: fixed pressure
+Building objective: fixed current
+Building objective: fixed Psi
+Timer: Objective build = 292 ms
+Timer: LinearConstraintProjection build = 855 ms
+Number of parameters: 45
+Number of objectives: 461
+Timer: Initializing the optimization = 24.1 sec
+
+Starting optimization
+Using method: proximal-lsq-exact
+Solver options:
+------------------------------------------------------------
+Maximum Function Evaluations       : 1251
+Maximum Allowed Total Δx Norm      : inf
+Scaled Termination                 : True
+Trust Region Method                : qr
+Initial Trust Radius               : 1.005e+03
+Maximum Trust Radius               : inf
+Minimum Trust Radius               : 2.220e-16
+Trust Radius Increase Ratio        : 2.000e+00
+Trust Radius Decrease Ratio        : 2.500e-01
+Trust Radius Increase Threshold    : 7.500e-01
+Trust Radius Decrease Threshold    : 2.500e-01
+------------------------------------------------------------ 
+
+   Iteration     Total nfev        Cost      Cost reduction    Step norm     Optimality   
+       0              1          2.652e+05                                    7.117e+02   
+       1              2          1.040e+04      2.548e+05      1.532e-01      5.561e+01   
+       2              3          3.407e+03      6.998e+03      2.468e-01      1.586e+01   
+       3              4          2.511e+02      3.155e+03      2.041e-01      2.583e+00   
+       4              6          5.407e+01      1.970e+02      9.813e-02      1.366e-01   
+       5              9          2.921e+01      2.486e+01      1.073e-02      1.795e-01   
+       6             10          1.998e+01      9.227e+00      1.629e-02      5.844e-02   
+       7             11          1.852e+01      1.462e+00      2.740e-02      8.359e-02   
+       8             12          1.835e+01      1.676e-01      4.456e-02      1.327e-01   
+       9             13          1.437e+01      3.983e+00      3.705e-03      6.167e-02   
+      10             14          1.307e+01      1.296e+00      1.078e-02      3.656e-02   

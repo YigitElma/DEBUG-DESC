@@ -1,0 +1,133 @@
+/home/ye2698/DESC/desc/integrals/_interp_utils.py:19: UserWarning: 
+jax-finufft is not installed.
+If you want to use NUFFTs, follow the DESC installation instructions.
+Otherwise you must set the parameter nufft_eps to zero
+when computing effective ripple, Gamma_c, and any other
+computations that involve bounce integrals.
+
+  warnings.warn(
+DESC version=0.15.0+425.ga8f1b2dda.
+Using JAX backend: jax version=0.6.2, jaxlib version=0.6.2, dtype=float64.
+Using device: NVIDIA A100 80GB PCIe (id=0), with 80.00 GB available memory.
+Building objective: QS two-term
+Precomputing transforms
+Timer: Precomputing transforms = 323 ms
+Building objective: aspect ratio
+Precomputing transforms
+Timer: Precomputing transforms = 40.3 ms
+Building objective: volume
+Precomputing transforms
+Timer: Precomputing transforms = 40.3 ms
+Timer: Objective build = 448 ms
+Building objective: force
+Precomputing transforms
+Timer: Precomputing transforms = 385 ms
+Timer: Objective build = 780 ms
+Timer: Objective build = 2.80 ms
+Timer: Eq Update LinearConstraintProjection build = 2.06 sec
+Timer: Proximal projection build = 22.1 sec
+Building objective: fixed cross-section R
+Building objective: fixed cross-section Z
+Building objective: fixed pressure
+Building objective: fixed current
+Building objective: fixed Psi
+Timer: Objective build = 263 ms
+Timer: LinearConstraintProjection build = 746 ms
+Number of parameters: 45
+Number of objectives: 461
+Timer: Initializing the optimization = 23.1 sec
+
+Starting optimization
+Using method: proximal-lsq-exact
+Solver options:
+------------------------------------------------------------
+Maximum Function Evaluations       : 1251
+Maximum Allowed Total Δx Norm      : inf
+Scaled Termination                 : True
+Trust Region Method                : qr
+Initial Trust Radius               : 1.006e+02
+Maximum Trust Radius               : inf
+Minimum Trust Radius               : 2.220e-16
+Trust Radius Increase Ratio        : 2.000e+00
+Trust Radius Decrease Ratio        : 2.500e-01
+Trust Radius Increase Threshold    : 7.500e-01
+Trust Radius Decrease Threshold    : 2.500e-01
+------------------------------------------------------------ 
+
+   Iteration     Total nfev        Cost      Cost reduction    Step norm     Optimality   
+       0              1          2.652e+03                                    7.114e+01   
+       1              2          1.367e+02      2.516e+03      7.174e-02      4.353e+00   
+       2              4          6.365e+01      7.302e+01      1.565e-02      6.559e+00   
+       3              6          3.037e+01      3.328e+01      1.130e-02      1.782e+00   
+       4              8          2.673e+01      3.640e+00      6.694e-03      6.799e-01   
+       5              9          2.292e+01      3.811e+00      5.470e-03      4.034e-01   
+       6             10          2.199e+01      9.246e-01      9.608e-03      6.722e-01   
+       7             11          1.932e+01      2.670e+00      2.041e-03      3.007e-01   
+       8             12          1.753e+01      1.788e+00      7.104e-03      1.907e-01   
+       9             14          1.706e+01      4.760e-01      3.331e-03      1.375e-01   
+      10             15          1.650e+01      5.577e-01      2.944e-03      1.354e-01   
+      11             16          1.612e+01      3.824e-01      2.813e-03      1.771e-01   
+      12             17          1.601e+01      1.038e-01      2.815e-03      2.800e-01   
+      13             18          1.583e+01      1.841e-01      4.046e-04      6.753e-02   
+      14             19          1.570e+01      1.303e-01      6.711e-04      1.333e-01   
+      15             20          1.557e+01      1.315e-01      4.847e-04      1.284e-01   
+      16             21          1.544e+01      1.283e-01      2.791e-04      1.304e-01   
+      17             22          1.528e+01      1.589e-01      1.545e-04      1.155e-01   
+      18             23          1.516e+01      1.248e-01      2.115e-04      3.784e-01   
+      19             24          1.485e+01      3.072e-01      1.151e-04      3.161e-01   
+      20             25          1.455e+01      3.002e-01      1.506e-04      2.559e-01   
+      21             26          1.418e+01      3.699e-01      3.593e-04      7.680e-02   
+      22             27          1.374e+01      4.342e-01      1.605e-03      2.898e-01   
+      23             28          1.332e+01      4.212e-01      1.773e-03      2.224e-01   
+      24             29          1.281e+01      5.123e-01      7.233e-04      2.034e-01   
+      25             30          1.228e+01      5.292e-01      4.417e-04      1.808e-01   
+      26             31          1.184e+01      4.409e-01      1.402e-03      1.772e-01   
+      27             32          1.134e+01      5.008e-01      1.935e-03      9.476e-02   
+      28             33          1.125e+01      8.515e-02      6.761e-04      1.044e-01   
+      29             34          1.109e+01      1.626e-01      7.495e-04      4.141e-02   
+      30             35          1.102e+01      6.946e-02      1.469e-03      8.119e-02   
+      31             36          1.093e+01      9.423e-02      5.942e-04      4.736e-02   
+      32             37          1.077e+01      1.540e-01      9.457e-04      4.646e-02   
+      33             38          1.059e+01      1.881e-01      2.035e-03      6.381e-02   
+      34             39          1.032e+01      2.617e-01      2.318e-03      6.988e-02   
+      35             40          1.005e+01      2.793e-01      2.205e-03      6.751e-02   
+      36             41          9.845e+00      1.996e-01      2.103e-03      8.258e-02   
+      37             42          9.563e+00      2.822e-01      2.194e-03      3.536e-02   
+      38             43          9.282e+00      2.812e-01      2.890e-03      1.343e-01   
+      39             44          8.711e+00      5.714e-01      2.063e-03      1.170e-01   
+      40             45          8.188e+00      5.227e-01      8.355e-04      3.337e-01   
+      41             47          7.706e+00      4.817e-01      8.827e-04      1.303e-01   
+      42             49          7.618e+00      8.800e-02      1.005e-03      1.116e-01   
+      43             51          7.577e+00      4.111e-02      1.728e-04      5.320e-02   
+      44             52          7.548e+00      2.946e-02      2.604e-04      5.080e-02   
+      45             53          7.547e+00      2.574e-04      2.833e-04      7.002e-02   
+      46             79          7.547e+00      0.000e+00      0.000e+00      7.002e-02   
+Warning: A bad approximation caused failure to predict improvement.
+         Current function value: 7.547e+00
+         Total delta_x: 1.617e-01
+         Iterations: 46
+         Function evaluations: 79
+         Jacobian evaluations: 46
+Timer: Solution time = 4.07 min
+Timer: Avg time per step = 5.19 sec
+==============================================================================================================
+                                                                 Start  -->   End
+Total (sum of squares):                                      2.818e+03  -->   7.547e+00, 
+Maximum absolute Quasi-symmetry (1,4) two-term error:        4.684e+00  -->   4.754e-01 (T^3)
+Minimum absolute Quasi-symmetry (1,4) two-term error:        1.493e-03  -->   4.279e-04 (T^3)
+Average absolute Quasi-symmetry (1,4) two-term error:        1.223e+00  -->   6.980e-02 (T^3)
+Aspect ratio:                                                7.980e+00  -->   7.484e+00 (dimensionless)
+Plasma volume:                                               3.094e-01  -->   3.099e-01 (m^3)
+Maximum absolute Force error:                                3.676e+00  -->   1.395e+01 (N)
+Minimum absolute Force error:                                1.165e-04  -->   1.688e-05 (N)
+Average absolute Force error:                                1.191e-01  -->   2.220e-01 (N)
+Maximum absolute Force error:                                4.988e-05  -->   1.893e-04 (normalized)
+Minimum absolute Force error:                                1.581e-09  -->   2.290e-10 (normalized)
+Average absolute Force error:                                1.617e-06  -->   3.012e-06 (normalized)
+Cross-section R error:                                       0.000e+00  -->   0.000e+00 (m)
+Cross-section Z error:                                       0.000e+00  -->   0.000e+00 (m)
+Fixed pressure profile error:                                0.000e+00  -->   0.000e+00 (Pa)
+Fixed current profile error:                                 0.000e+00  -->   0.000e+00 (A)
+Fixed Psi error:                                             0.000e+00  -->   0.000e+00 (Wb)
+==============================================================================================================
+
