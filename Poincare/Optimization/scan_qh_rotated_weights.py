@@ -63,7 +63,7 @@ module purge
 module load anaconda3/2024.10
 conda activate desc-env
 
-python  run_qh_weights.py {w_qs} {w_ar} {w_vol}
+python  run_qh_rotated_weights.py {w_qs} {w_ar} {w_vol}
 """
             with open("job.slurm_scan", "w+") as f:
                 f.write(slurm_str)
