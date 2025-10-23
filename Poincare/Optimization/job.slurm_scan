@@ -1,15 +1,15 @@
 #!/bin/bash
-#SBATCH --job-name=wqs1.0_war50.0_wvol50.0_wiota20.0
+#SBATCH --job-name=wqs50.0_war100.0_wvol100.0_wiota100.0
 #SBATCH --nodes=1                # node count
 #SBATCH -n 8        # cpu-cores per task (>1 if multi-threaded tasks)
 #SBATCH --mem=32G         # memory per cpu-core (4G is default)
 #SBATCH --time=00:45:00          # total run time limit (HH:MM:SS)
 #SBATCH --gres=gpu:1
 #SBATCH --constraint=nomig
-#SBATCH -o ./scan_results/slurm_poincare_optimize_QA_wqs1.0_war50.0_wvol50.0_wiota20.0.out
+#SBATCH -o ./scan_results/slurm_poincare_optimize_QA_wqs50.0_war100.0_wvol100.0_wiota100.0.out
 
 module purge
 module load anaconda3/2024.10
 conda activate desc-env
 
-python  run_qa_weights.py 1.0 50.0 50.0 20.0
+python  run_qa_weights.py 50.0 100.0 100.0 100.0

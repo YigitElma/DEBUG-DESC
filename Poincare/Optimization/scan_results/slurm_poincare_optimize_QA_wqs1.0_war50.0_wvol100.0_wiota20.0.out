@@ -1,0 +1,109 @@
+/home/ye2698/DESC/desc/integrals/_interp_utils.py:19: UserWarning: 
+jax-finufft is not installed.
+If you want to use NUFFTs, follow the DESC installation instructions.
+Otherwise you must set the parameter nufft_eps to zero
+when computing effective ripple, Gamma_c, and any other
+computations that involve bounce integrals.
+
+  warnings.warn(
+DESC version=0.15.0+424.gdbba9ba17.
+Using JAX backend: jax version=0.6.2, jaxlib version=0.6.2, dtype=float64.
+Using device: NVIDIA A100-PCIE-40GB (id=0), with 40.00 GB available memory.
+Building objective: QS two-term
+Precomputing transforms
+Timer: Precomputing transforms = 336 ms
+Building objective: aspect ratio
+Precomputing transforms
+Timer: Precomputing transforms = 39.8 ms
+Building objective: volume
+Precomputing transforms
+Timer: Precomputing transforms = 39.2 ms
+Building objective: rotational transform
+Precomputing transforms
+Timer: Precomputing transforms = 295 ms
+Timer: Objective build = 799 ms
+Building objective: force
+Precomputing transforms
+Timer: Precomputing transforms = 530 ms
+Timer: Objective build = 845 ms
+Timer: Objective build = 2.99 ms
+Timer: Eq Update LinearConstraintProjection build = 2.24 sec
+Timer: Proximal projection build = 10.2 sec
+Building objective: fixed cross-section R
+Building objective: fixed cross-section Z
+Building objective: fixed pressure
+Building objective: fixed current
+Building objective: fixed Psi
+Timer: Objective build = 281 ms
+Timer: LinearConstraintProjection build = 842 ms
+Number of parameters: 45
+Number of objectives: 478
+Timer: Initializing the optimization = 11.4 sec
+
+Starting optimization
+Using method: proximal-lsq-exact
+Solver options:
+------------------------------------------------------------
+Maximum Function Evaluations       : 1251
+Maximum Allowed Total Δx Norm      : inf
+Scaled Termination                 : True
+Trust Region Method                : qr
+Initial Trust Radius               : 3.650e+01
+Maximum Trust Radius               : inf
+Minimum Trust Radius               : 2.220e-16
+Trust Radius Increase Ratio        : 2.000e+00
+Trust Radius Decrease Ratio        : 2.500e-01
+Trust Radius Increase Threshold    : 7.500e-01
+Trust Radius Decrease Threshold    : 2.500e-01
+------------------------------------------------------------ 
+
+   Iteration     Total nfev        Cost      Cost reduction    Step norm     Optimality   
+       0              1          4.554e+01                                    3.905e+00   
+       1              5          3.864e+01      6.895e+00      7.570e-04      2.139e+00   
+       2              6          3.619e+01      2.455e+00      2.719e-03      1.604e+00   
+       3              7          3.413e+01      2.059e+00      4.660e-03      4.977e-01   
+       4              8          3.327e+01      8.603e-01      2.882e-03      4.560e-01   
+       5             10          3.294e+01      3.256e-01      7.376e-04      4.357e-01   
+       6             11          3.264e+01      3.055e-01      2.116e-03      2.220e-01   
+       7             12          3.237e+01      2.700e-01      4.036e-03      2.298e-01   
+       8             14          3.227e+01      9.500e-02      1.514e-03      1.075e-01   
+       9             15          3.220e+01      7.468e-02      1.158e-03      2.306e-01   
+      10             16          3.216e+01      3.115e-02      1.293e-03      2.760e-01   
+      11             17          3.210e+01      6.485e-02      4.730e-04      8.344e-02   
+      12             18          3.205e+01      4.854e-02      7.493e-04      9.489e-02   
+      13             19          3.201e+01      4.260e-02      7.059e-04      6.721e-02   
+      14             20          3.197e+01      3.375e-02      6.420e-04      3.759e-02   
+      15             21          3.195e+01      1.990e-02      6.262e-04      4.395e-02   
+Optimization terminated successfully.
+`ftol` condition satisfied. (ftol=1.00e-03)
+         Current function value: 3.195e+01
+         Total delta_x: 1.980e-02
+         Iterations: 15
+         Function evaluations: 21
+         Jacobian evaluations: 16
+Timer: Solution time = 1.05 min
+Timer: Avg time per step = 3.96 sec
+==============================================================================================================
+                                                                 Start  -->   End
+Total (sum of squares):                                      4.546e+01  -->   3.195e+01, 
+Maximum absolute Quasi-symmetry (1,0) two-term error:        3.034e-01  -->   2.100e-01 (T^3)
+Minimum absolute Quasi-symmetry (1,0) two-term error:        2.375e-05  -->   4.714e-05 (T^3)
+Average absolute Quasi-symmetry (1,0) two-term error:        5.504e-02  -->   4.555e-02 (T^3)
+Aspect ratio:                                                6.037e+00  -->   6.000e+00 (dimensionless)
+Plasma volume:                                               5.420e-01  -->   5.841e-01 (m^3)
+Maximum Rotational transform:                                2.750e-02  -->   3.942e-02 (dimensionless)
+Minimum Rotational transform:                                2.745e-02  -->   3.658e-02 (dimensionless)
+Average Rotational transform:                                2.749e-02  -->   3.841e-02 (dimensionless)
+Maximum absolute Force error:                                6.082e-01  -->   1.947e-01 (N)
+Minimum absolute Force error:                                3.191e-05  -->   5.923e-07 (N)
+Average absolute Force error:                                5.827e-02  -->   4.378e-03 (N)
+Maximum absolute Force error:                                2.953e-07  -->   9.451e-08 (normalized)
+Minimum absolute Force error:                                1.549e-11  -->   2.875e-13 (normalized)
+Average absolute Force error:                                2.829e-08  -->   2.125e-09 (normalized)
+Cross-section R error:                                       0.000e+00  -->   0.000e+00 (m)
+Cross-section Z error:                                       0.000e+00  -->   0.000e+00 (m)
+Fixed pressure profile error:                                0.000e+00  -->   0.000e+00 (Pa)
+Fixed current profile error:                                 0.000e+00  -->   0.000e+00 (A)
+Fixed Psi error:                                             0.000e+00  -->   0.000e+00 (Wb)
+==============================================================================================================
+
