@@ -90,7 +90,7 @@ def run_step(n, eqfam, ftol=1e-2, **kwargs):
                 normalize=False,
                 weight=w_qs,
             ),
-            AspectRatio(eq=eqfam[-1], target=6, weight=w_ar, normalize=False),
+            AspectRatio(eq=eqfam[-1], target=8, weight=w_ar, normalize=False),
             Volume(
                 eq=eqfam[-1], target=Vorg, weight=w_vol, normalize=False
             ),  # giving Vorg is kind of cheating
