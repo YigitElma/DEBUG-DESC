@@ -28,7 +28,7 @@ from desc.io import load
 name = str(sys.argv[1])
 plot = True
 # these will be used as 1e-T
-ts_to_profile = [5, 4, 3, 2, 1]
+ts_to_profile = [3, 2, 1]
 Ns = [1, 10, 30, 100, 300, 500, 1000, 3000, 5000, 10000]
 Ns = np.array(Ns)
 np.savetxt(f"{name}-Ns.txt", Ns)
@@ -87,7 +87,7 @@ for T in ts_to_profile:
 
     Ts = []
     for n in Ns:
-        rhos = [0.5] * n
+        rhos = [0.3] * n
         initializer = ManualParticleInitializerFlux(
             rho0=rhos,
             theta0=0,
@@ -113,9 +113,10 @@ if plot:
         Tsi = np.loadtxt(f"{name}-ts_1e-{T}.txt")
         plt.semilogx(Ns, Tsi, label=f"tf = 1e-{T}")
     plt.xlabel("Number of particles")
-    plt.ylabel("Time per run (seconds)")
+    plt.ylabel("Time of Integration (seconds)")
     plt.legend()
     plt.title(f"Time to trace particles in reactor size {name}")
+    plt.xlim([1, max(Ns)])
     plt.savefig(f"{name}_time_to_trace_particles.png", dpi=500)
 
 print("DONE!")
