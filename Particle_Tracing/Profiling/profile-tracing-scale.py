@@ -24,8 +24,8 @@ from desc.io import load
 name = str(sys.argv[1])
 plot = True
 # these will be used as 1e-T
-ts_to_profile = [4, 5]
-Ns = [1, 10]  # , 100, 300, 500, 1000, 3000, 5000, 10000]
+ts_to_profile = [5, 4, 3, 2, 1]
+Ns = [1, 10, 30, 100, 300, 500, 1000, 3000, 5000, 10000]
 Ns = np.array(Ns)
 np.savetxt(f"{name}-Ns.txt", Ns)
 repeat = 5
@@ -83,15 +83,15 @@ for T in ts_to_profile:
 
     Ts = []
     for n in Ns:
-        rhos = [0.7] * n
+        rhos = [0.5] * n
         initializer = ManualParticleInitializerFlux(
             rho0=rhos,
             theta0=0,
             zeta0=np.random.rand(n) * 2 * np.pi,
-            xi0=0.7,
+            xi0=2 * np.random.rand(n) - 1,
             E=3.5e6,
             m=4.0,
-            q=1.0,
+            q=2.0,
         )
         x0, args = initializer.init_particles(model=model, field=eq)
         _ = fun(x0, args).block_until_ready()  # compile
@@ -112,7 +112,6 @@ if plot:
     plt.ylabel("Time per run (seconds)")
     plt.legend()
     plt.title(f"Time to trace particles in reactor size {name}")
-    plt.show()
-    # plt.savefig(f"time_to_trace_particles_{name}.png", dpi=500)
+    plt.savefig(f"{name}_time_to_trace_particles.png", dpi=500)
 
 print("DONE!")
