@@ -11,4 +11,4 @@ module purge
 module load anaconda3/2024.10
 conda activate desc-env
 
-python profile-tracing-scale.py "precise_QA"
+python profile-tracing-scale.py "w7-x"

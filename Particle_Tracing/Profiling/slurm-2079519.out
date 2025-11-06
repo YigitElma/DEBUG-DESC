@@ -1,0 +1,35 @@
+DESC version=0.15.0+555.g9b2e71684.
+Using JAX backend: jax version=0.7.2, jaxlib version=0.7.2, dtype=float64.
+Using device: NVIDIA A100-PCIE-40GB (id=0), with 40.00 GB available memory.
+/home/ye2698/DESC/desc/utils.py:572: UserWarning: Setting rotational transform profile on an equilibrium with fixed toroidal current, removing existing toroidal current profile.
+  warnings.warn(msg, err)
+N=   1    and Tf=1e-5 took 0.1820 seconds per run
+N=  10    and Tf=1e-5 took 0.3201 seconds per run
+N=  30    and Tf=1e-5 took 0.3216 seconds per run
+N=  100   and Tf=1e-5 took 0.3891 seconds per run
+N=  300   and Tf=1e-5 took 0.4285 seconds per run
+N=  500   and Tf=1e-5 took 0.4637 seconds per run
+N= 1000   and Tf=1e-5 took 0.6094 seconds per run
+N= 3000   and Tf=1e-5 took 0.9008 seconds per run
+N= 5000   and Tf=1e-5 took 0.9396 seconds per run
+N= 10000  and Tf=1e-5 took 1.5095 seconds per run
+N=   1    and Tf=1e-4 took 1.6334 seconds per run
+N=  10    and Tf=1e-4 took 2.9506 seconds per run
+N=  30    and Tf=1e-4 took 3.2434 seconds per run
+N=  100   and Tf=1e-4 took 3.3222 seconds per run
+N=  300   and Tf=1e-4 took 3.7751 seconds per run
+N=  500   and Tf=1e-4 took 4.3228 seconds per run
+N= 1000   and Tf=1e-4 took 5.2636 seconds per run
+N= 3000   and Tf=1e-4 took 7.8681 seconds per run
+N= 5000   and Tf=1e-4 took 8.1205 seconds per run
+N= 10000  and Tf=1e-4 took 13.5888 seconds per run
+N=   1    and Tf=1e-3 took 15.3365 seconds per run
+N=  10    and Tf=1e-3 took 27.4703 seconds per run
+N=  30    and Tf=1e-3 took 25.8428 seconds per run
+N=  100   and Tf=1e-3 took 32.6485 seconds per run
+N=  300   and Tf=1e-3 took 37.5996 seconds per run
+N=  500   and Tf=1e-3 took 41.2027 seconds per run
+N= 1000   and Tf=1e-3 took 51.4281 seconds per run
+N= 3000   and Tf=1e-3 took 76.3540 seconds per run
+N= 5000   and Tf=1e-3 took 79.2077 seconds per run
+[2025-11-06T16:55:00.010] error: *** JOB 2079519 ON della-i12g2 CANCELLED AT 2025-11-06T16:55:00 DUE TO TIME LIMIT ***
