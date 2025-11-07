@@ -1,0 +1,26 @@
+DESC version=0.15.0+555.g9b2e71684.
+Using JAX backend: jax version=0.7.2, jaxlib version=0.7.2, dtype=float64.
+Using device: NVIDIA A100 80GB PCIe (id=0), with 80.00 GB available memory.
+/home/ye2698/DESC/desc/utils.py:572: UserWarning: Setting rotational transform profile on an equilibrium with fixed toroidal current, removing existing toroidal current profile.
+  warnings.warn(msg, err)
+N=   1    and Tf=1e-3 took 3.1371 seconds per run
+N=  10    and Tf=1e-3 took 11.4739 seconds per run
+N=  30    and Tf=1e-3 took 12.1568 seconds per run
+N=  100   and Tf=1e-3 took 12.7807 seconds per run
+N=  300   and Tf=1e-3 took 12.9278 seconds per run
+N=  500   and Tf=1e-3 took 14.2025 seconds per run
+N= 1000   and Tf=1e-3 took 16.7416 seconds per run
+N= 3000   and Tf=1e-3 took 24.5674 seconds per run
+N= 5000   and Tf=1e-3 took 20.6739 seconds per run
+N= 10000  and Tf=1e-3 took 30.5535 seconds per run
+N=   1    and Tf=1e-2 took 62.2995 seconds per run
+N=  10    and Tf=1e-2 took 96.5478 seconds per run
+N=  30    and Tf=1e-2 took 102.5596 seconds per run
+N=  100   and Tf=1e-2 took 109.8431 seconds per run
+N=  300   and Tf=1e-2 took 116.2076 seconds per run
+N=  500   and Tf=1e-2 took 123.7971 seconds per run
+N= 1000   and Tf=1e-2 took 147.1230 seconds per run
+N= 3000   and Tf=1e-2 took 217.4447 seconds per run
+N= 5000   and Tf=1e-2 took 189.9982 seconds per run
+N= 10000  and Tf=1e-2 took 272.8592 seconds per run
+[2025-11-07T03:35:44.004] error: *** JOB 2081658 ON della-l03g6 CANCELLED AT 2025-11-07T03:35:44 DUE TO TIME LIMIT ***
