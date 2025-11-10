@@ -277,7 +277,7 @@ class DirectParticleTracing(_Objective):
         return jnp.sqrt(jnp.dot(slopes, slopes)) / self._x0.shape[0]
 
 
-name = "ncsx"
+name = str(sys.argv[1])
 try:
     # if the file exists, load it
     eq = desc.io.load(f"{name}_vacuum_scaled_solved.h5")
@@ -327,7 +327,7 @@ obj = ObjectiveFunction(
             particles=particles_flux,
             model=model_flux,
             solver=Tsit5(),
-            ts=np.linspace(0, 1e-5, 1000),
+            ts=np.linspace(0, 1e-4, 1000),
             min_step_size=1e-8,
             stepsize_controller=PIDController(rtol=1e-3, atol=1e-4, dtmin=1e-8),
             adjoint=RecursiveCheckpointAdjoint(),  # default is RecursiveCheckpointAdjoint() (reverse mode)
@@ -358,7 +358,7 @@ eq.optimize(
     objective=obj,
     constraints=constraints + bdry_constraints,
     verbose=3,
-    maxiter=0,
+    maxiter=25,
     ftol=1e-3,
     gtol=1e-3,
     xtol=1e-10,
