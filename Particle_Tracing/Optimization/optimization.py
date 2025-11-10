@@ -367,6 +367,6 @@ eq.optimize(
     ftol=1e-3,
     gtol=1e-6,
     xtol=1e-10,
-    options={"max_nfev": 30, "initial_trust_radius": 1.0},
+    options={"max_nfev": 30, "initial_trust_ratio": 0.1},
 )
 eq.save(f"{name}_vacuum_scaled_optimized-{time_sig}.h5")
