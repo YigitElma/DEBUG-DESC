@@ -1,9 +1,9 @@
 #!/bin/bash
-#SBATCH --job-name=trace-w7-x
+#SBATCH --job-name=optimize-ncsx
 #SBATCH --nodes=1                # node count
 #SBATCH -n 8        # cpu-cores per task (>1 if multi-threaded tasks)
 #SBATCH --mem=32G         # memory per cpu-core (4G is default)
-#SBATCH --time=03:00:00          # total run time limit (HH:MM:SS)
+#SBATCH --time=01:00:00          # total run time limit (HH:MM:SS)
 #SBATCH --gres=gpu:1
 #SBATCH --constraint=nomig
 
