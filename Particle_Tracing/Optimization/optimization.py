@@ -45,6 +45,10 @@ from diffrax import *
 
 print_backend_info()
 
+from datetime import datetime
+
+now = datetime.now()
+time_sig = now.strftime("%Y-%m-%d %H:%M:%S")
 
 from desc.objectives.objective_funs import _Objective
 from desc.particles import _trace_particles
@@ -332,8 +336,9 @@ obj = ObjectiveFunction(
             stepsize_controller=PIDController(rtol=1e-3, atol=1e-4, dtmin=1e-8),
             adjoint=RecursiveCheckpointAdjoint(),  # default is RecursiveCheckpointAdjoint() (reverse mode)
             deriv_mode="rev",
+            weight=100,
         ),
-        AspectRatio(eq, target=AR, weight=1e1),  # keep aspect ratio similar
+        AspectRatio(eq, target=AR, weight=1),  # keep aspect ratio similar
     ]
 )
 if eq.iota is not None:
@@ -360,8 +365,8 @@ eq.optimize(
     verbose=3,
     maxiter=25,
     ftol=1e-3,
-    gtol=1e-3,
+    gtol=1e-6,
     xtol=1e-10,
     options={"max_nfev": 30, "initial_trust_radius": 1.0},
 )
-eq.save(f"{name}_vacuum_scaled_optimized.h5")
+eq.save(f"{name}_vacuum_scaled_optimized-{time_sig}.h5")
