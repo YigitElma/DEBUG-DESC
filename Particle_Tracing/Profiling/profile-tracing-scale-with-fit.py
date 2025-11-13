@@ -33,7 +33,7 @@ ts_to_profile = [5, 4, 3, 2]
 Ns = [1, 10, 30, 100, 300, 500, 1000, 3000, 5000, 10000]
 Ns = np.array(Ns)
 np.savetxt(f"{name}-fit-Ns.txt", Ns)
-repeat = 3
+repeat = 5
 
 try:
     # if the file exists, load it
@@ -53,7 +53,7 @@ eq.iota = eq.get_profile("iota")
 model = VacuumGuidingCenterTrajectory(frame="flux")
 interpolater = FourierChebyshevField(L=eq.L_grid, M=eq.M_grid, N=eq.N_grid)
 interpolater.build(eq)
-data_fit = interpolater.fit(eq.params_dict, {"iota": eq.iota})
+interpolater.fit(eq.params_dict, {"iota": eq.iota})
 
 
 def default_event(t, y, args, **kwargs):
@@ -67,18 +67,20 @@ for T in ts_to_profile:
     ts = np.linspace(0, 10 ** (-T), 100)
 
     @jit
-    def fun(x0, args, data):
+    def fun(x0, args, interpolater):
         rpz, _ = _trace_particles(
-            field=data,
+            field=interpolater,
             y0=x0,
             model=model,
             model_args=args,
             ts=ts,
             params=None,
-            max_steps=int((ts[-1] - ts[0]) / 1e-8),
+            max_steps=int((ts[-1] - ts[0]) / 1e-5),
             min_step_size=1e-8,
-            stepsize_controller=PIDController(rtol=1e-4, atol=1e-4, dtmin=1e-8),
-            saveat=SaveAt(ts=ts),
+            stepsize_controller=PIDController(
+                rtol=1e-4, atol=1e-4, dtmin=1e-8, pcoeff=0.3, icoeff=0.3, dcoeff=0
+            ),
+            saveat=SaveAt(steps=True),
             solver=Tsit5(),
             adjoint=RecursiveCheckpointAdjoint(),
             event=event,
@@ -102,8 +104,8 @@ for T in ts_to_profile:
             q=2.0,
         )
         x0, args = initializer.init_particles(model=model, field=eq)
-        _ = fun(x0, args, data_fit).block_until_ready()  # compile
-        fun_time = lambda: fun(x0, args, data_fit).block_until_ready()
+        _ = fun(x0, args, interpolater).block_until_ready()  # compile
+        fun_time = lambda: fun(x0, args, interpolater).block_until_ready()
         t = timeit.timeit(fun_time, number=repeat)
         print(f"N={n:^7} and Tf=1e-{T} took {t/repeat:.4f} seconds per run")
         Ts.append(t / repeat)
