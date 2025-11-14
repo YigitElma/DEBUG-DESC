@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=trace-heliotron
+#SBATCH --job-name=trace-ncsx
 #SBATCH --nodes=1                # node count
 #SBATCH -n 8        # cpu-cores per task (>1 if multi-threaded tasks)
 #SBATCH --mem=32G         # memory per cpu-core (4G is default)
@@ -11,4 +11,4 @@ module purge
 module load anaconda3/2024.10
 conda activate desc-env
 
-python profile-tracing-scale-with-fit.py "heliotron"
+python profile-tracing-scale-with-fit.py "ncsx"
