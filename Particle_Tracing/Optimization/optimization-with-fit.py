@@ -350,7 +350,7 @@ obj = ObjectiveFunction(
             deriv_mode="fwd",
         ),
         AspectRatio(eq, target=AR, weight=10),  # keep aspect ratio similar
-        Elongation(eq=eq, bounds=(0, 3), weight=10),
+        Elongation(eq=eq, bounds=(0, 7), weight=10),
     ]
 )
 if eq.iota is not None:
