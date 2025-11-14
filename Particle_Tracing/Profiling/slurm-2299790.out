@@ -1,0 +1,60 @@
+DESC version=0.15.0+581.gc92af1c78.
+Using JAX backend: jax version=0.7.2, jaxlib version=0.7.2, dtype=float64.
+Using device: NVIDIA A100-PCIE-40GB (id=0), with 40.00 GB available memory.
+
+Tracing will be done for heliotron...
+
+/home/ye2698/DESC/desc/utils.py:572: UserWarning: Setting toroidal current profile on an equilibrium with fixed rotational transform, removing existing rotational transform profile.
+  warnings.warn(msg, err)
+Building objective: force
+Precomputing transforms
+Building objective: lcfs R
+Building objective: lcfs Z
+Building objective: fixed Psi
+Building objective: fixed pressure
+Building objective: fixed current
+Building objective: fixed sheet current
+Building objective: self_consistency R
+Building objective: self_consistency Z
+Building objective: lambda gauge
+Building objective: axis R self consistency
+Building objective: axis Z self consistency
+Number of parameters: 1593
+Number of objectives: 4940
+
+Starting optimization
+Using method: lsq-exact
+Warning: Maximum number of iterations has been exceeded.
+         Current function value: 1.674e-07
+         Total delta_x: 7.433e-01
+         Iterations: 100
+         Function evaluations: 105
+         Jacobian evaluations: 101
+==============================================================================================================
+                                                                 Start  -->   End
+Total (sum of squares):                                      1.034e-01  -->   1.674e-07, 
+Maximum absolute Force error:                                1.173e+09  -->   1.310e+06 (N)
+Minimum absolute Force error:                                8.192e+03  -->   2.946e+01 (N)
+Average absolute Force error:                                5.472e+07  -->   6.943e+04 (N)
+Maximum absolute Force error:                                1.194e-01  -->   1.333e-04 (normalized)
+Minimum absolute Force error:                                8.338e-07  -->   2.999e-09 (normalized)
+Average absolute Force error:                                5.569e-03  -->   7.066e-06 (normalized)
+R boundary error:                                            0.000e+00  -->   3.560e-15 (m)
+Z boundary error:                                            0.000e+00  -->   2.220e-16 (m)
+Fixed Psi error:                                             0.000e+00  -->   7.105e-15 (Wb)
+Fixed pressure profile error:                                0.000e+00  -->   0.000e+00 (Pa)
+Fixed current profile error:                                 0.000e+00  -->   0.000e+00 (A)
+Fixed sheet current error:                                   0.000e+00  -->   0.000e+00 (~)
+==============================================================================================================
+
+/home/ye2698/DESC/desc/utils.py:572: UserWarning: Setting rotational transform profile on an equilibrium with fixed toroidal current, removing existing toroidal current profile.
+  warnings.warn(msg, err)
+N=   1    and Tf=1e-5 took 0.3724 seconds per run
+N=  10    and Tf=1e-5 took 0.3745 seconds per run
+N=  30    and Tf=1e-5 took 0.3839 seconds per run
+N=  100   and Tf=1e-5 took 0.3880 seconds per run
+N=  300   and Tf=1e-5 took 0.3745 seconds per run
+N=  500   and Tf=1e-5 took 0.3787 seconds per run
+N= 1000   and Tf=1e-5 took 0.3775 seconds per run
+N= 3000   and Tf=1e-5 took 0.3892 seconds per run
+N= 5000   and Tf=1e-5 took 0.4072 seconds per run
