@@ -1,0 +1,49 @@
+DESC version=0.15.0+581.gc92af1c78.
+Using JAX backend: jax version=0.7.2, jaxlib version=0.7.2, dtype=float64.
+Using device: NVIDIA A100-PCIE-40GB (id=0), with 40.00 GB available memory.
+
+Tracing will be done for precise_QA...
+
+/home/ye2698/DESC/desc/utils.py:572: UserWarning: Setting rotational transform profile on an equilibrium with fixed toroidal current, removing existing toroidal current profile.
+  warnings.warn(msg, err)
+N=   1    and Tf=1e-5 took 0.2547 seconds per run
+N=  10    and Tf=1e-5 took 0.2533 seconds per run
+N=  30    and Tf=1e-5 took 0.2465 seconds per run
+N=  100   and Tf=1e-5 took 0.2533 seconds per run
+N=  300   and Tf=1e-5 took 0.2500 seconds per run
+N=  500   and Tf=1e-5 took 0.2537 seconds per run
+N= 1000   and Tf=1e-5 took 0.2613 seconds per run
+N= 3000   and Tf=1e-5 took 0.2731 seconds per run
+N= 5000   and Tf=1e-5 took 0.2780 seconds per run
+N= 10000  and Tf=1e-5 took 0.3058 seconds per run
+N=   1    and Tf=1e-4 took 0.2536 seconds per run
+N=  10    and Tf=1e-4 took 0.2814 seconds per run
+N=  30    and Tf=1e-4 took 0.2611 seconds per run
+N=  100   and Tf=1e-4 took 0.2759 seconds per run
+N=  300   and Tf=1e-4 took 0.2867 seconds per run
+N=  500   and Tf=1e-4 took 0.2902 seconds per run
+N= 1000   and Tf=1e-4 took 0.3140 seconds per run
+N= 3000   and Tf=1e-4 took 0.4093 seconds per run
+N= 5000   and Tf=1e-4 took 0.5185 seconds per run
+N= 10000  and Tf=1e-4 took 0.8080 seconds per run
+N=   1    and Tf=1e-3 took 0.3058 seconds per run
+N=  10    and Tf=1e-3 took 0.4786 seconds per run
+N=  30    and Tf=1e-3 took 0.3579 seconds per run
+N=  100   and Tf=1e-3 took 0.4781 seconds per run
+N=  300   and Tf=1e-3 took 0.5834 seconds per run
+N=  500   and Tf=1e-3 took 0.6978 seconds per run
+N= 1000   and Tf=1e-3 took 0.9559 seconds per run
+N= 3000   and Tf=1e-3 took 1.9281 seconds per run
+N= 5000   and Tf=1e-3 took 3.0202 seconds per run
+N= 10000  and Tf=1e-3 took 5.9537 seconds per run
+N=   1    and Tf=1e-2 took 0.7918 seconds per run
+N=  10    and Tf=1e-2 took 2.6027 seconds per run
+N=  30    and Tf=1e-2 took 1.4312 seconds per run
+N=  100   and Tf=1e-2 took 2.4707 seconds per run
+N=  300   and Tf=1e-2 took 3.6473 seconds per run
+N=  500   and Tf=1e-2 took 4.7797 seconds per run
+N= 1000   and Tf=1e-2 took 7.3826 seconds per run
+N= 3000   and Tf=1e-2 took 17.3226 seconds per run
+N= 5000   and Tf=1e-2 took 28.2155 seconds per run
+N= 10000  and Tf=1e-2 took 57.1116 seconds per run
+DONE!
