@@ -44,3 +44,6 @@ N=  300   and Tf=1e-2 took 3.6437 seconds per run
 N=  500   and Tf=1e-2 took 4.7740 seconds per run
 N= 1000   and Tf=1e-2 took 7.3783 seconds per run
 N= 3000   and Tf=1e-2 took 17.3116 seconds per run
+N= 5000   and Tf=1e-2 took 28.1962 seconds per run
+N= 10000  and Tf=1e-2 took 57.0863 seconds per run
+DONE!
