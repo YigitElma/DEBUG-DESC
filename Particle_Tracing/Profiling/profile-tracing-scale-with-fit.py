@@ -37,7 +37,7 @@ repeat = 5
 
 try:
     # if the file exists, load it
-    eq = load(f"{name}_vacuum_scaled_solved.h5")
+    eq = load(f"eqs/{name}_vacuum_scaled_solved.h5")
     eqi_scaled = eq.copy()
 except:
     # else, create it from scratch
@@ -47,7 +47,7 @@ except:
     eq.current = 0
     eq.solve(ftol=1e-4, verbose=1)
     eqi_scaled = eq.copy()
-    eq.save(f"{name}_vacuum_scaled_solved.h5")
+    eq.save(f"eqs/{name}_vacuum_scaled_solved.h5")
 
 eq.iota = eq.get_profile("iota")
 model = VacuumGuidingCenterTrajectory(frame="flux")
@@ -123,6 +123,6 @@ if plot:
     plt.legend()
     plt.title(f"Time to trace particles in reactor size {name}")
     plt.xlim([1, max(Ns)])
-    plt.savefig(f"{name}_fit_time_to_trace_particles.png", dpi=500)
+    plt.savefig(f"Plots/{name}_fit_time_to_trace_particles.png", dpi=500)
 
 print("DONE!")

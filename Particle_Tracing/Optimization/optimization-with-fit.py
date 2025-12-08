@@ -297,7 +297,7 @@ class DirectParticleTracing(_Objective):
 name = str(sys.argv[1])
 try:
     # if the file exists, load it
-    eq = desc.io.load(f"{name}_vacuum_scaled_solved.h5")
+    eq = desc.io.load(f"eqs/{name}_vacuum_scaled_solved.h5")
     eqi_scaled = eq.copy()
 except:
     # else, create it from scratch
@@ -307,7 +307,7 @@ except:
     eq.current = 0
     eq.solve(ftol=1e-4, verbose=1)
     eqi_scaled = eq.copy()
-    eq.save(f"{name}_vacuum_scaled_solved.h5")
+    eq.save(f"eqs/{name}_vacuum_scaled_solved.h5")
 
 # The Vacuum Guiding Center model assumes a constant pressure profile and zero current
 # If the equilibrium does not satisfy these conditions, raise an error.
