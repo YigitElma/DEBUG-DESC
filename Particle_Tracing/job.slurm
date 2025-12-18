@@ -11,4 +11,6 @@ module purge
 module load anaconda3/2024.10
 conda activate desc-env
 
-nsys profile --trace=nvtx,cuda,cusolver --output=vf-eval-bench --force-overwrite=true python  profile-vf-computation.py
+# nsys profile --trace=nvtx,cuda,cusolver --output=vf-eval-bench --force-overwrite=true python  profile-vf-computation.py
+
+nsys profile --trace=nvtx,cuda,cusolver --output=integration --force-overwrite=true python  profile-integration.py
