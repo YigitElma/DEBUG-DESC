@@ -230,54 +230,46 @@ interpolator2 = FourierChebyshevFieldTest(L=eq.L_grid, M=eq.M_grid, N=eq.N_grid)
 interpolator2.build(eq)
 interpolator2.fit(params, {"iota": eq.iota, "current": eq.current})
 
+m = argsi[0]
+q = argsi[1]
+mu = argsi[2]
+
 with nvtx.annotate("eq", color="green"):
     _ = model._compute_flux_coordinates(
-        x=x.squeeze(),
-        eq=eq,
-        params=params,
-        m=argsi[0],
-        q=argsi[1],
-        mu=argsi[2],
-        iota=iota,
+        x=x, eq=eq, params=params, m=m, q=q, mu=mu, iota=iota
     ).block_until_ready()
     for _ in range(100):
         with nvtx.annotate("eq", color="red"):
             _ = model._compute_flux_coordinates(
-                x=x.squeeze(),
-                eq=eq,
-                params=params,
-                m=argsi[0],
-                q=argsi[1],
-                mu=argsi[2],
-                iota=iota,
+                x=x, eq=eq, params=params, m=m, q=q, mu=mu, iota=iota
             ).block_until_ready()
 
 with nvtx.annotate("fc-org", color="red"):
     _ = model._compute_flux_coordinates_with_fit(
-        x=x.squeeze(), field=interpolator, m=argsi[0], q=argsi[1], mu=argsi[2]
+        x=x, field=interpolator, m=m, q=q, mu=mu
     ).block_until_ready()
     for _ in range(100):
         with nvtx.annotate("fc-org", color="blue"):
             _ = model._compute_flux_coordinates_with_fit(
-                x=x.squeeze(), field=interpolator, m=argsi[0], q=argsi[1], mu=argsi[2]
+                x=x, field=interpolator, m=m, q=q, mu=mu
             ).block_until_ready()
 
 with nvtx.annotate("fc-new", color="green"):
     _ = model._compute_flux_coordinates_with_fit(
-        x=x.squeeze(), field=interpolator2, m=argsi[0], q=argsi[1], mu=argsi[2]
+        x=x, field=interpolator2, m=m, q=q, mu=mu
     ).block_until_ready()
     for _ in range(100):
         with nvtx.annotate("fc-new", color="red"):
             _ = model._compute_flux_coordinates_with_fit(
-                x=x.squeeze(), field=interpolator2, m=argsi[0], q=argsi[1], mu=argsi[2]
+                x=x, field=interpolator2, m=m, q=q, mu=mu
             ).block_until_ready()
 
 with nvtx.annotate("spline", color="red"):
     _ = model._compute_flux_coordinates_with_fit(
-        x=x.squeeze(), field=spliner, m=argsi[0], q=argsi[1], mu=argsi[2]
+        x=x, field=spliner, m=m, q=q, mu=mu
     ).block_until_ready()
     for _ in range(100):
         with nvtx.annotate("spline", color="blue"):
             _ = model._compute_flux_coordinates_with_fit(
-                x=x.squeeze(), field=spliner, m=argsi[0], q=argsi[1], mu=argsi[2]
+                x=x, field=spliner, m=m, q=q, mu=mu
             ).block_until_ready()
