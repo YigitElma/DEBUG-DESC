@@ -124,14 +124,20 @@ class DirectParticleTracing(_Objective):
         self._ts = jnp.asarray(ts)
         self._adjoint = adjoint
         if max_steps is None:
-            max_steps = 10
-            max_steps = int((ts[-1] - ts[0]) / min_step_size * max_steps)
+            max_steps = int((ts[-1] - ts[0]) / min_step_size)
         self._max_steps = max_steps
         self._min_step_size = min_step_size
         self._stepsize_controller = (
             stepsize_controller
             if stepsize_controller is not None
-            else PIDController(rtol=1e-4, atol=1e-4, dtmin=min_step_size)
+            else PIDController(
+                rtol=1e-4,
+                atol=1e-4,
+                dtmin=min_step_size,
+                pcoeff=0.3,
+                icoeff=0.3,
+                dcoeff=0,
+            )
         )
         self._iota_grid = iota_grid
         assert model.frame == "flux", "can only trace in flux coordinates"
@@ -178,14 +184,12 @@ class DirectParticleTracing(_Objective):
 
         # one metric per particle
         self._dim_f = self._x0.shape[0]
-        # average
-        self._dim_f = 1
 
         # tracing uses carteasian coordinates internally, the termainating event
         # must look at rho values by conversion
         def default_event(t, y, args, **kwargs):
             i = jnp.sqrt(y[0] ** 2 + y[1] ** 2)
-            return jnp.logical_or(i < 0.0, i > 1.0)
+            return i > 1.0
 
         self._event = Event(default_event)
 
@@ -277,8 +281,10 @@ class DirectParticleTracing(_Objective):
             coeffs = jnp.polyfit(ts, y, 1)
             return coeffs[0]
 
-        slopes = vmap(fit_line)(rhos - rho0s[:, None]) * self._ts[-1]
-        return jnp.sqrt(jnp.dot(slopes, slopes)) / self._x0.shape[0]
+        slopes = vmap(fit_line)(rhos - rho0s[:, None])
+        slopes = jnp.where(jnp.abs(slopes) < 1 / 1e-3, 0.0, slopes)
+        slopes *= self._ts[-1]
+        return slopes
 
 
 name = str(sys.argv[1])
@@ -309,7 +315,7 @@ if (eq.c_l != 0).any():
 
 
 # create N particles between rho=0.1 and rho=0.3 randomly
-N = 1000  # number of particles traced
+N = 10000  # number of particles traced
 RHO0 = 0.1 + np.random.rand(N) * 0.2
 
 model_flux = VacuumGuidingCenterTrajectory(frame="flux")
@@ -331,14 +337,14 @@ obj = ObjectiveFunction(
             particles=particles_flux,
             model=model_flux,
             solver=Tsit5(),
-            ts=np.linspace(0, 1e-4, 1000),
+            ts=np.linspace(0, 1e-3, 300),
             min_step_size=1e-8,
-            stepsize_controller=PIDController(rtol=1e-3, atol=1e-4, dtmin=1e-8),
-            adjoint=RecursiveCheckpointAdjoint(),  # default is RecursiveCheckpointAdjoint() (reverse mode)
-            deriv_mode="rev",
-            weight=100,
+            max_steps=3000,
+            adjoint=ForwardMode(),  # default is RecursiveCheckpointAdjoint() (reverse mode)
+            deriv_mode="fwd",
         ),
         AspectRatio(eq, target=AR, weight=1),  # keep aspect ratio similar
+        Elongation(eq=eq, bounds=(0, 8), weight=1),
     ]
 )
 if eq.iota is not None:
@@ -367,6 +373,8 @@ eq.optimize(
     ftol=1e-3,
     gtol=1e-6,
     xtol=1e-10,
-    options={"max_nfev": 30, "initial_trust_ratio": 0.1},
+    options={"max_nfev": 40},
 )
 eq.save(f"{name}_vacuum_scaled_optimized-{time_sig}.h5")
+plot_comparison([eqi_scaled, eq], labels=["Initial", "Final"])
+plt.savefig(f"compare_{name}_vacuum_scaled_optimized-{time_sig}.png", dpi=400)
