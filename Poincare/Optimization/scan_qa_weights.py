@@ -29,7 +29,7 @@ def get_queued_job_names():
 # --- GET QUEUED JOBS ONCE AT THE START ---
 queued_jobs = get_queued_job_names()
 
-weights_qs = [1.0, 10.0, 50.0]
+weights_qs = [1.0]
 weights_ar = [1.0, 10.0, 50.0, 100.0]
 weights_vol = [1.0, 10.0, 50.0, 100.0]
 weights_iota = [10.0, 20.0, 50.0, 100.0]
