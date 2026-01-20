@@ -1,0 +1,87 @@
+DESC version=0.16.0+592.g7b21b40f1.
+Using JAX backend: jax version=0.7.2, jaxlib version=0.7.2, dtype=float64.
+Using device: NVIDIA A100 80GB PCIe (id=0), with 80.00 GB available memory.
+
+===================
+Optimizing heliotron 
+Optimizing for 0.0001 seconds
+===================
+
+=========== Optimizing with modes  > 2 ===========
+Building objective: Particle Confinement
+Precomputing transforms
+Timer: Precomputing transforms = 2.00 sec
+Building objective: aspect ratio
+Precomputing transforms
+Timer: Precomputing transforms = 76.9 ms
+Building objective: elongation
+Precomputing transforms
+Timer: Precomputing transforms = 77.7 ms
+Timer: Objective build = 8.46 sec
+Building objective: force
+Precomputing transforms
+Timer: Precomputing transforms = 1.36 sec
+Timer: Objective build = 2.00 sec
+Timer: Objective build = 2.49 ms
+Timer: Eq Update LinearConstraintProjection build = 5.64 sec
+Timer: Proximal projection build = 50.5 sec
+Building objective: fixed pressure
+Building objective: fixed Psi
+Building objective: fixed current
+Building objective: lcfs R
+Building objective: lcfs Z
+Timer: Objective build = 1.10 sec
+Timer: LinearConstraintProjection build = 2.20 sec
+Number of parameters: 24
+Number of objectives: 10002
+Timer: Initializing the optimization = 55.1 sec
+
+Starting optimization
+Using method: proximal-sgd
+Solver options:
+----------------------------------------
+Alpha          : 7.070e-11
+Beta           : 9.000e-01
+---------------------------------------- 
+
+   Iteration     Total nfev        Cost      Cost reduction    Step norm     Optimality   
+       0              1          1.991e+06                                    3.882e+08   
+       1              2          1.922e+06      6.869e+04      2.745e-03      2.466e+08   
+       2              3          1.826e+06      9.614e+04      3.334e-03      7.041e+09   
+       3              4          1.131e+05      1.713e+06      9.974e-02         nan      
+Traceback (most recent call last):
+  File "/home/ye2698/DESC/DEBUG/Particle_Tracing/Optimization/optimization-sgd.py", line 376, in <module>
+    eq.optimize(
+  File "/home/ye2698/DESC/desc/equilibrium/equilibrium.py", line 2420, in optimize
+    things, result = optimizer.optimize(
+                     ^^^^^^^^^^^^^^^^^^^
+  File "/home/ye2698/DESC/desc/optimize/optimizer.py", line 318, in optimize
+    result = optimizers[method]["fun"](
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ye2698/DESC/desc/optimize/_desc_wrappers.py", line 435, in _optimize_desc_stochastic
+    result = sgd(
+             ^^^^
+  File "/home/ye2698/DESC/desc/optimize/stochastic.py", line 157, in sgd
+    g = grad(x, *args)
+        ^^^^^^^^^^^^^^
+  File "/home/ye2698/DESC/desc/optimize/_constraint_wrappers.py", line 359, in grad
+    df = self._objective.grad(x, constants)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ye2698/DESC/desc/optimize/_constraint_wrappers.py", line 1069, in grad
+    xg, xf = self._update_equilibrium(x, store=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ye2698/DESC/desc/optimize/_constraint_wrappers.py", line 935, in _update_equilibrium
+    self._eq.solve(
+  File "/home/ye2698/DESC/desc/equilibrium/equilibrium.py", line 2319, in solve
+    things, result = optimizer.optimize(
+                     ^^^^^^^^^^^^^^^^^^^
+  File "/home/ye2698/DESC/desc/optimize/optimizer.py", line 318, in optimize
+    result = optimizers[method]["fun"](
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ye2698/DESC/desc/optimize/_desc_wrappers.py", line 270, in _optimize_desc_least_squares
+    result = lsqtr(
+             ^^^^^^
+  File "/home/ye2698/DESC/desc/optimize/least_squares.py", line 175, in lsqtr
+    assert in_bounds(x, lb, ub), "x0 is infeasible"
+           ^^^^^^^^^^^^^^^^^^^^
+AssertionError: x0 is infeasible

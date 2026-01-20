@@ -1,0 +1,80 @@
+DESC version=0.16.0+585.g76dcda5a9.
+Using JAX backend: jax version=0.7.2, jaxlib version=0.7.2, dtype=float64.
+Using device: NVIDIA A100-SXM4-80GB (id=0), with 80.00 GB available memory.
+=========== Optimizing with modes  > 1 ===========
+Building objective: Particle Confinement
+Precomputing transforms
+Timer: Precomputing transforms = 1.41 sec
+Building objective: aspect ratio
+Precomputing transforms
+Timer: Precomputing transforms = 43.2 ms
+Building objective: elongation
+Precomputing transforms
+Timer: Precomputing transforms = 42.8 ms
+Timer: Objective build = 8.47 sec
+Building objective: force
+Precomputing transforms
+Timer: Precomputing transforms = 1.08 sec
+Timer: Objective build = 1.59 sec
+Timer: Objective build = 2.63 ms
+Timer: Eq Update LinearConstraintProjection build = 9.68 sec
+Timer: Proximal projection build = 38.6 sec
+Building objective: fixed pressure
+Building objective: fixed Psi
+Building objective: fixed current
+Building objective: lcfs R
+Building objective: lcfs Z
+Timer: Objective build = 802 ms
+Timer: LinearConstraintProjection build = 2.11 sec
+Number of parameters: 8
+Number of objectives: 10002
+Timer: Initializing the optimization = 41.6 sec
+
+Starting optimization
+Using method: proximal-lsq-exact
+Solver options:
+------------------------------------------------------------
+Maximum Function Evaluations       : 40
+Maximum Allowed Total Δx Norm      : inf
+Scaled Termination                 : True
+Trust Region Method                : qr
+Initial Trust Radius               : 5.433e-01
+Maximum Trust Radius               : inf
+Minimum Trust Radius               : 2.220e-16
+Trust Radius Increase Ratio        : 2.000e+00
+Trust Radius Decrease Ratio        : 2.500e-01
+Trust Radius Increase Threshold    : 7.500e-01
+Trust Radius Decrease Threshold    : 2.500e-01
+------------------------------------------------------------ 
+
+   Iteration     Total nfev        Cost      Cost reduction    Step norm     Optimality   
+       0              1          0.000e+00                                    0.000e+00   
+`gtol` condition satisfied. (gtol=1.00e-06)
+         Current function value: 0.000e+00
+         Total delta_x: 0.000e+00
+         Iterations: 0
+         Function evaluations: 1
+         Jacobian evaluations: 1
+Timer: Solution time = 3.68 min
+Timer: Avg time per step = 3.68 min
+==============================================================================================================
+                                                                 Start  -->   End
+Total (sum of squares):                                      0.000e+00  -->   0.000e+00, 
+Maximum absolute Particle Confinement error:                 0.000e+00  -->   0.000e+00 (dimensionless)
+Minimum absolute Particle Confinement error:                 0.000e+00  -->   0.000e+00 (dimensionless)
+Average absolute Particle Confinement error:                 0.000e+00  -->   0.000e+00 (dimensionless)
+Aspect ratio:                                                6.000e+00  -->   6.000e+00 (dimensionless)
+Elongation:                                                  6.326e+00  -->   6.326e+00 (dimensionless)
+Maximum absolute Force error:                                4.459e+04  -->   4.451e+04 (N)
+Minimum absolute Force error:                                3.941e-01  -->   2.012e-02 (N)
+Average absolute Force error:                                9.757e+02  -->   9.756e+02 (N)
+Maximum absolute Force error:                                1.276e-05  -->   1.274e-05 (normalized)
+Minimum absolute Force error:                                1.128e-10  -->   5.757e-12 (normalized)
+Average absolute Force error:                                2.792e-07  -->   2.792e-07 (normalized)
+Fixed pressure profile error:                                0.000e+00  -->   0.000e+00 (Pa)
+Fixed Psi error:                                             0.000e+00  -->   0.000e+00 (Wb)
+Fixed current profile error:                                 0.000e+00  -->   0.000e+00 (A)
+R boundary error:                                            3.129e-17  -->   0.000e+00 (m)
+Z boundary error:                                            5.552e-17  -->   0.000e+00 (m)
+==============================================================================================================
+

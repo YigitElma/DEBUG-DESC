@@ -1,0 +1,95 @@
+DESC version=0.16.0+592.g7b21b40f1.
+Using JAX backend: jax version=0.7.2, jaxlib version=0.7.2, dtype=float64.
+Using device: NVIDIA A100 80GB PCIe (id=0), with 80.00 GB available memory.
+
+===================
+Optimizing heliotron 
+Optimizing for 0.0001 seconds
+===================
+
+=========== Optimizing with modes  > 2 ===========
+Building objective: Particle Confinement
+Precomputing transforms
+Timer: Precomputing transforms = 2.04 sec
+Building objective: aspect ratio
+Precomputing transforms
+Timer: Precomputing transforms = 81.3 ms
+Building objective: elongation
+Precomputing transforms
+Timer: Precomputing transforms = 80.1 ms
+Timer: Objective build = 9.16 sec
+Building objective: force
+Precomputing transforms
+Timer: Precomputing transforms = 1.42 sec
+Timer: Objective build = 2.11 sec
+Timer: Objective build = 2.50 ms
+Timer: Eq Update LinearConstraintProjection build = 9.51 sec
+Timer: Proximal projection build = 56.9 sec
+Building objective: fixed pressure
+Building objective: fixed Psi
+Building objective: fixed current
+Building objective: lcfs R
+Building objective: lcfs Z
+Timer: Objective build = 1.15 sec
+Timer: LinearConstraintProjection build = 2.23 sec
+Number of parameters: 24
+Number of objectives: 10002
+Timer: Initializing the optimization = 1.02 min
+
+Starting optimization
+Using method: proximal-lsq-exact
+Solver options:
+------------------------------------------------------------
+Maximum Function Evaluations       : 60
+Maximum Allowed Total Δx Norm      : inf
+Scaled Termination                 : True
+Trust Region Method                : qr
+Initial Trust Radius               : 2.745e-01
+Maximum Trust Radius               : inf
+Minimum Trust Radius               : 2.220e-16
+Trust Radius Increase Ratio        : 2.000e+00
+Trust Radius Decrease Ratio        : 2.500e-01
+Trust Radius Increase Threshold    : 7.500e-01
+Trust Radius Decrease Threshold    : 2.500e-01
+------------------------------------------------------------ 
+
+   Iteration     Total nfev        Cost      Cost reduction    Step norm     Optimality   
+       0              1          2.079e+06                                    1.012e+09   
+       1              2          1.662e+06      4.169e+05      1.601e-01      6.568e+08   
+       2              3          1.405e+06      2.569e+05      2.253e-01      1.062e+08   
+       3              4          1.132e+06      2.737e+05      3.852e-01      1.619e+07   
+       4              5          1.018e+06      1.138e+05      1.031e-01      1.483e+08   
+       5              6          9.087e+05      1.092e+05      1.451e-01      2.364e+08   
+       6              7          7.874e+05      1.213e+05      9.494e-02      3.971e+07   
+       7             10          7.824e+05      4.992e+03      1.665e-03      1.911e+08   
+       8             12          7.795e+05      2.941e+03      8.589e-04      2.295e+08   
+       9             35          7.795e+05      0.000e+00      0.000e+00      2.295e+08   
+Warning: A bad approximation caused failure to predict improvement.
+         Current function value: 7.795e+05
+         Total delta_x: 8.004e-01
+         Iterations: 9
+         Function evaluations: 35
+         Jacobian evaluations: 9
+Timer: Solution time = 1.05 hrs
+Timer: Avg time per step = 6.34 min
+==============================================================================================================
+                                                                 Start  -->   End
+Total (sum of squares):                                      2.374e+06  -->   7.795e+05, 
+Maximum absolute Particle Confinement error:                 1.013e+00  -->   6.719e-01 (dimensionless)
+Minimum absolute Particle Confinement error:                 0.000e+00  -->   0.000e+00 (dimensionless)
+Average absolute Particle Confinement error:                 1.181e-01  -->   6.585e-02 (dimensionless)
+Aspect ratio:                                                1.048e+01  -->   9.514e+00 (dimensionless)
+Elongation:                                                  1.844e+00  -->   2.451e+00 (dimensionless)
+Maximum absolute Force error:                                1.310e+06  -->   5.900e+07 (N)
+Minimum absolute Force error:                                2.946e+01  -->   7.760e+01 (N)
+Average absolute Force error:                                6.943e+04  -->   5.715e+05 (N)
+Maximum absolute Force error:                                1.333e-04  -->   6.005e-03 (normalized)
+Minimum absolute Force error:                                2.999e-09  -->   7.898e-09 (normalized)
+Average absolute Force error:                                7.066e-06  -->   5.817e-05 (normalized)
+Fixed pressure profile error:                                0.000e+00  -->   0.000e+00 (Pa)
+Fixed Psi error:                                             0.000e+00  -->   0.000e+00 (Wb)
+Fixed current profile error:                                 0.000e+00  -->   0.000e+00 (A)
+R boundary error:                                            2.466e-32  -->   2.466e-32 (m)
+Z boundary error:                                            1.607e-33  -->   1.748e-33 (m)
+==============================================================================================================
+

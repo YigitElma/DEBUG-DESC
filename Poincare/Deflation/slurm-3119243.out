@@ -1,0 +1,49 @@
+DESC version=0.16.0+585.g76dcda5a9.
+Using JAX backend: jax version=0.7.2, jaxlib version=0.7.2, dtype=float64.
+Using device: NVIDIA A100 80GB PCIe (id=0), with 80.00 GB available memory.
+/home/ye2698/DESC/desc/io/hdf5_io.py:127: RuntimeWarning: 
+The object attribute '_bdry_mode' was not loaded from the file.
+This is likely because the file containing 'Equilibrium' was created before '_bdry_mode' became an attribute of objects of class '<class 'desc.equilibrium.equilibrium.Equilibrium'>'.
+The user may verify that a default value has been set.
+This warning will persist until the file is saved with the new object.
+
+Note to developers: Add 'def _set_up(self)' as a method to class '<class 'desc.equilibrium.equilibrium.Equilibrium'>'
+(or the superclass where this new attribute is assigned) that assigns a value to '_bdry_mode'.
+This method is called automatically when a file is loaded.
+Recall that the testing suite will fail on warnings.
+  warnings.warn(
+Traceback (most recent call last):
+  File "/home/ye2698/DESC/DEBUG/Poincare/Deflation/deflation-for-poincare.py", line 329, in <module>
+    eqd = desc.io.load(f"{name}_LMN_{LMN}_poincare_as_def{i}_sigma_{sigma}.h5")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ye2698/DESC/desc/io/optimizable_io.py", line 58, in load
+    with h5py.File(load_from, "r") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ye2698/.conda/envs/desc-env/lib/python3.12/site-packages/h5py/_hl/files.py", line 566, in __init__
+    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ye2698/.conda/envs/desc-env/lib/python3.12/site-packages/h5py/_hl/files.py", line 241, in make_fid
+    fid = h5f.open(name, flags, fapl=fapl)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 104, in h5py.h5f.open
+FileNotFoundError: [Errno 2] Unable to synchronously open file (unable to open file: name = 'precise_QA_LMN_12_poincare_as_def9_sigma_100.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ye2698/DESC/DEBUG/Poincare/Deflation/deflation-for-poincare.py", line 331, in <module>
+    eqd = set_poincare_equilibrium(eq0h)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ye2698/DESC/DEBUG/Poincare/Deflation/deflation-for-poincare.py", line 239, in set_poincare_equilibrium
+    eq_poincare = Equilibrium(
+                  ^^^^^^^^^^^^
+  File "/home/ye2698/DESC/desc/backend.py", line 147, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ye2698/DESC/desc/equilibrium/equilibrium.py", line 422, in __init__
+    errorif(
+  File "/home/ye2698/DESC/desc/utils.py", line 560, in errorif
+    raise err(colored(msg, "red"))
+TypeError: Equilibrium got unexpected kwargs: dict_keys(['xsection'])

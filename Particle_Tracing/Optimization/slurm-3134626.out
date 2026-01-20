@@ -1,0 +1,59 @@
+DESC version=0.16.0+592.g7b21b40f1.
+Using JAX backend: jax version=0.7.2, jaxlib version=0.7.2, dtype=float64.
+Using device: NVIDIA A100-SXM4-80GB (id=0), with 80.00 GB available memory.
+Optimizing w7-x 
+Optimizing for 0.0001 seconds
+===================
+
+=========== Optimizing with modes  > 3 ===========
+Building objective: Particle Confinement
+Precomputing transforms
+Timer: Precomputing transforms = 1.50 sec
+Building objective: aspect ratio
+Precomputing transforms
+Timer: Precomputing transforms = 51.1 ms
+Building objective: elongation
+Precomputing transforms
+Timer: Precomputing transforms = 50.5 ms
+Timer: Objective build = 7.34 sec
+Building objective: force
+Precomputing transforms
+Timer: Precomputing transforms = 1.17 sec
+Timer: Objective build = 1.72 sec
+Timer: Objective build = 2.76 ms
+Timer: Eq Update LinearConstraintProjection build = 8.06 sec
+Timer: Proximal projection build = 35.2 sec
+Building objective: fixed pressure
+Building objective: fixed Psi
+Building objective: fixed current
+Building objective: lcfs R
+Building objective: lcfs Z
+Timer: Objective build = 819 ms
+Timer: LinearConstraintProjection build = 2.24 sec
+Number of parameters: 48
+Number of objectives: 10002
+Timer: Initializing the optimization = 39.7 sec
+
+Starting optimization
+Using method: proximal-lsq-exact
+Solver options:
+------------------------------------------------------------
+Maximum Function Evaluations       : 60
+Maximum Allowed Total Δx Norm      : inf
+Scaled Termination                 : True
+Trust Region Method                : qr
+Initial Trust Radius               : 4.025e-01
+Maximum Trust Radius               : inf
+Minimum Trust Radius               : 2.220e-16
+Trust Radius Increase Ratio        : 2.000e+00
+Trust Radius Decrease Ratio        : 2.500e-01
+Trust Radius Increase Threshold    : 7.500e-01
+Trust Radius Decrease Threshold    : 2.500e-01
+------------------------------------------------------------ 
+
+   Iteration     Total nfev        Cost      Cost reduction    Step norm     Optimality   
+       0              1          5.975e+05                                    7.113e+07   
+       1              2          4.676e+05      1.299e+05      1.764e-01      8.369e+07   
+       2              3          4.207e+05      4.697e+04      2.817e-01      8.711e+08   
+       3              4          4.052e+05      1.548e+04      2.508e-01      2.461e+07   
+[2025-12-19T14:10:07.010] error: *** JOB 3134626 ON della-l09g4 CANCELLED AT 2025-12-19T14:10:07 DUE TO TIME LIMIT ***

@@ -1,0 +1,100 @@
+DESC version=0.16.0+585.g76dcda5a9.
+Using JAX backend: jax version=0.7.2, jaxlib version=0.7.2, dtype=float64.
+Using device: NVIDIA A100 80GB PCIe (id=0), with 80.00 GB available memory.
+Optimizing precise_QA 
+=========== Optimizing with modes  > 1 ===========
+Optimizing for 0.0001 seconds
+Building objective: Particle Confinement
+Precomputing transforms
+Timer: Precomputing transforms = 1.45 sec
+Building objective: aspect ratio
+Precomputing transforms
+Timer: Precomputing transforms = 43.4 ms
+Building objective: elongation
+Precomputing transforms
+Timer: Precomputing transforms = 42.5 ms
+Timer: Objective build = 6.43 sec
+Building objective: force
+Precomputing transforms
+Timer: Precomputing transforms = 1.14 sec
+Timer: Objective build = 1.71 sec
+Timer: Objective build = 2.52 ms
+Timer: Eq Update LinearConstraintProjection build = 5.85 sec
+Timer: Proximal projection build = 32.6 sec
+Building objective: fixed pressure
+Building objective: fixed Psi
+Building objective: fixed current
+Building objective: lcfs R
+Building objective: lcfs Z
+Timer: Objective build = 868 ms
+Timer: LinearConstraintProjection build = 2.26 sec
+Number of parameters: 8
+Number of objectives: 10002
+Timer: Initializing the optimization = 35.9 sec
+
+Starting optimization
+Using method: proximal-lsq-exact
+Solver options:
+------------------------------------------------------------
+Maximum Function Evaluations       : 40
+Maximum Allowed Total Δx Norm      : inf
+Scaled Termination                 : True
+Trust Region Method                : qr
+Initial Trust Radius               : 1.672e+02
+Maximum Trust Radius               : inf
+Minimum Trust Radius               : 2.220e-16
+Trust Radius Increase Ratio        : 2.000e+00
+Trust Radius Decrease Ratio        : 2.500e-01
+Trust Radius Increase Threshold    : 7.500e-01
+Trust Radius Decrease Threshold    : 2.500e-01
+------------------------------------------------------------ 
+
+   Iteration     Total nfev        Cost      Cost reduction    Step norm     Optimality   
+       0              1          2.482e+01                                    4.205e-01   
+       1              2          1.744e+01      7.380e+00      3.433e-01      6.925e-01   
+       2              3          1.162e+01      5.827e+00      1.192e-01      4.951e-01   
+       3              4          9.504e+00      2.112e+00      3.949e-02      2.813e-01   
+       4              5          9.107e+00      3.975e-01      2.590e-02      7.708e-02   
+       5              6          9.093e+00      1.362e-02      2.773e-02      4.009e-01   
+       6              7          8.729e+00      3.646e-01      1.824e-02      1.529e-01   
+       7              8          8.619e+00      1.094e-01      1.075e-02      2.467e-01   
+       8              9          8.538e+00      8.074e-02      1.359e-02      1.057e-01   
+       9             10          8.433e+00      1.054e-01      2.502e-02      1.156e-01   
+      10             11          8.168e+00      2.652e-01      1.958e-02      1.644e-01   
+      11             12          8.004e+00      1.636e-01      2.655e-02      2.829e-01   
+      12             13          7.883e+00      1.215e-01      1.367e-02      1.175e-01   
+      13             14          7.868e+00      1.464e-02      1.253e-02      8.456e-02   
+      14             17          7.858e+00      1.040e-02      2.429e-03      1.177e-01   
+      15             18          7.850e+00      7.935e-03      2.844e-03      8.170e-02   
+      16             19          7.839e+00      1.093e-02      1.889e-03      9.373e-02   
+      17             25          7.838e+00      3.599e-04      5.232e-06      9.852e-02   
+Optimization terminated successfully.
+`ftol` condition satisfied. (ftol=1.00e-03)
+         Current function value: 7.838e+00
+         Total delta_x: 4.982e-01
+         Iterations: 17
+         Function evaluations: 25
+         Jacobian evaluations: 18
+Timer: Solution time = 10.5 min
+Timer: Avg time per step = 35.1 sec
+==============================================================================================================
+                                                                 Start  -->   End
+Total (sum of squares):                                      2.482e+01  -->   7.838e+00, 
+Maximum absolute Particle Confinement error:                 5.127e-01  -->   4.953e-01 (dimensionless)
+Minimum absolute Particle Confinement error:                 0.000e+00  -->   0.000e+00 (dimensionless)
+Average absolute Particle Confinement error:                 3.096e-02  -->   1.781e-02 (dimensionless)
+Aspect ratio:                                                6.000e+00  -->   7.214e+00 (dimensionless)
+Elongation:                                                  6.326e+00  -->   7.353e+00 (dimensionless)
+Maximum absolute Force error:                                4.459e+04  -->   1.870e+05 (N)
+Minimum absolute Force error:                                3.941e-01  -->   2.141e-01 (N)
+Average absolute Force error:                                9.757e+02  -->   4.715e+03 (N)
+Maximum absolute Force error:                                1.276e-05  -->   5.352e-05 (normalized)
+Minimum absolute Force error:                                1.128e-10  -->   6.127e-11 (normalized)
+Average absolute Force error:                                2.792e-07  -->   1.350e-06 (normalized)
+Fixed pressure profile error:                                0.000e+00  -->   0.000e+00 (Pa)
+Fixed Psi error:                                             0.000e+00  -->   0.000e+00 (Wb)
+Fixed current profile error:                                 0.000e+00  -->   0.000e+00 (A)
+R boundary error:                                            3.129e-17  -->   3.104e-17 (m)
+Z boundary error:                                            5.552e-17  -->   4.301e-22 (m)
+==============================================================================================================
+
