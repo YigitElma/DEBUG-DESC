@@ -29,9 +29,9 @@ def get_queued_job_names():
 # --- GET QUEUED JOBS ONCE AT THE START ---
 queued_jobs = get_queued_job_names()
 
-weights_qs = [1.0, 10.0, 20.0]
-weights_ar = [1.0, 10.0, 50.0, 100.0]
-weights_vol = [5.0, 10.0, 50.0, 100.0]
+weights_qs = [1.0]
+weights_ar = [1.0, 10.0, 20.0, 50.0, 100.0]
+weights_vol = [5.0, 10.0, 20.0, 50.0, 100.0]
 
 for w_qs in weights_qs:
     for w_ar in weights_ar:
@@ -85,3 +85,4 @@ python  run_qh_weights.py {w_qs} {w_ar} {w_vol}
             else:
                 # Success, print the sbatch output (e.g., "Submitted batch job 12345")
                 print(result.stdout.strip())
+                print(f"\tSubmitted {job_name}")

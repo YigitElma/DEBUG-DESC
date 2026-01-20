@@ -43,18 +43,20 @@ print_backend_info()
 
 # load initial equilibrium
 try:
-    eq = load("poincare_precise_QH_initial_eq.h5")
+    eq = load("poincare_precise_QH_initial_eq_using_v16_updated.h5")
     eq.xsection = eq.get_surface_at(zeta=0)
     eq.surface = eq.get_surface_at(rho=1)
 except FileNotFoundError:
     eq = load("../../../desc/examples/precise_QH_output.h5")[0]
+    eq.xsection = eq.get_surface_at(zeta=0)
+    eq.surface = eq.get_surface_at(rho=1)
     constraints = get_fixed_xsection_constraints(eq=eq)
     objective = ObjectiveFunction(ForceBalance(eq))
 
     # before optimization make sure that the initial equilibrium
     # is in force balance in terms of poincare constraints
     eq.solve(
-        verbose=0,
+        verbose=3,
         objective=objective,
         constraints=constraints,
         maxiter=100,
@@ -62,7 +64,7 @@ except FileNotFoundError:
     )
     eq.xsection = eq.get_surface_at(zeta=0)
     eq.surface = eq.get_surface_at(rho=1)
-    eq.save("poincare_precise_QH_initial_eq.h5")
+    eq.save("poincare_precise_QH_initial_eq_using_v16_updated.h5")
 
 eqfam = EquilibriaFamily(eq)
 eq00 = get("precise_QH")
