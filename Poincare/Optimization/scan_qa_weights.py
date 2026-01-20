@@ -87,3 +87,4 @@ python  run_qa_weights.py {w_qs} {w_ar} {w_vol} {w_iota}
                 else:
                     # Success, print the sbatch output (e.g., "Submitted batch job 12345")
                     print(result.stdout.strip())
+                    print(f"\tSubmitted {job_name}")
