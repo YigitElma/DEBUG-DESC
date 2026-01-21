@@ -31,7 +31,7 @@ queued_jobs = get_queued_job_names()
 
 weights_qs = [1.0]
 weights_ar = [1.0, 10.0, 50.0, 100.0]
-weights_vol = [1.0, 10.0, 50.0, 100.0]
+weights_vol = [10.0, 20.0, 50.0, 100.0]
 weights_iota = [10.0, 20.0, 50.0, 100.0]
 
 results_dir = "./scan_QA_maxV"
@@ -61,7 +61,7 @@ for w_qs in weights_qs:
 #SBATCH --time=00:45:00          # total run time limit (HH:MM:SS)
 #SBATCH --gres=gpu:1
 #SBATCH --constraint=nomig
-#SBATCH -o {results_dir}/slurm_{file_identifier}.out
+#SBATCH -o ./scan_QA_maxV/slurm_{file_identifier}.out
 
 module purge
 module load anaconda3/2024.10
