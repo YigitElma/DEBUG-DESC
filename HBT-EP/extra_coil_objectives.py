@@ -19,6 +19,12 @@ class CoilBounds(_CoilObjective):
     ----------
     coil : CoilSet or Coil
         Coil(s) that are to be optimized
+    Rmaj : float
+        Major radius of the torus that the coil should stay inside of.
+        Defaults to 1.0.
+    rmin : float
+        Minor radius of the torus that the coil should stay inside of.
+        Defaults to 0.25.
     grid : Grid, optional
         Collocation grid containing the nodes to evaluate at.
         Defaults to ``LinearGrid(N=2 * coil.N + 5)``
@@ -39,6 +45,8 @@ class CoilBounds(_CoilObjective):
     def __init__(
         self,
         coil,
+        Rmaj=1.0,
+        rmin=0.25,
         target=None,
         bounds=None,
         weight=1,
@@ -52,6 +60,9 @@ class CoilBounds(_CoilObjective):
     ):
         if target is None and bounds is None:
             target = 2 * np.pi
+
+        self.Rmaj = Rmaj
+        self.rmin = rmin
 
         super().__init__(
             coil,
@@ -107,14 +118,13 @@ class CoilBounds(_CoilObjective):
         """
         data = super().compute(params, constants=constants)
         data = tree_leaves(data, is_leaf=lambda x: isinstance(x, dict))
-        # out = jnp.array([dat["R"]  for dat in data])
 
         out = jnp.array(
             [
-                jnp.sum(jnp.maximum(0.75 - dat["R"], 0) ** 2)
-                + jnp.sum(jnp.maximum(dat["R"] - 1.25, 0) ** 2)
-                + jnp.sum(jnp.maximum(-0.25 - dat["Z"], 0) ** 2)
-                + jnp.sum(jnp.maximum(dat["Z"] - 0.25, 0) ** 2)
+                jnp.sum(jnp.maximum((self.Rmaj - self.rmin) - dat["R"], 0) ** 2)
+                + jnp.sum(jnp.maximum(dat["R"] - (self.Rmaj + self.rmin), 0) ** 2)
+                + jnp.sum(jnp.maximum(-self.rmin - dat["Z"], 0) ** 2)
+                + jnp.sum(jnp.maximum(dat["Z"] - self.rmin, 0) ** 2)
                 for dat in data
             ]
         )
