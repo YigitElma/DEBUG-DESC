@@ -11,7 +11,8 @@ from efit2desc import (
     plot_eq_surfaces_against_efit,
 )
 
-eqdsk_name = "From-Jeff/HBT_limited.eqdsk"
+name = "HBT_105995_06"
+eqdsk_name = f"From-Jeff/{name}.eqdsk"
 
 # I had to comment some saving functions in the source code
 # if you give a relative path, internal file names becomes
@@ -19,4 +20,5 @@ eqdsk_name = "From-Jeff/HBT_limited.eqdsk"
 eq, _ = convert_EFIT_to_DESC(
     eqdsk_name, L=16, M=16, psiN_cutoff=1.0, plot=False, save=False
 )
-eq.save(f"desc-eq-HBT-limited.h5")
+eq.change_resolution(NFP=64)
+eq.save(f"desc-eq-{name}.h5")

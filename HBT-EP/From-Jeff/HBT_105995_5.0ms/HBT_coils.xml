@@ -1,0 +1,43 @@
+<psitri>
+  <coils>
+    <coil_set current="1.320572E+04">
+      <coil>0.257, 0.043</coil>
+      <coil>0.257, 0.129</coil>
+      <coil>0.257, 0.214</coil>
+      <coil>0.257, 0.300</coil>
+      <coil>0.634, 0.693</coil>
+      <coil>0.657, 0.672</coil>
+      <coil>0.257, -0.043</coil>
+      <coil>0.257, -0.129</coil>
+      <coil>0.257, -0.214</coil>
+      <coil>0.257, -0.300</coil>
+      <coil>0.634, -0.693</coil>
+      <coil>0.657, -0.672</coil>
+    </coil_set>
+    <coil_set current="-2.241828E+03">
+      <coil scale="-4">1.572, 0.6505</coil>
+      <coil scale="-4">1.572, -0.6505</coil>
+      <coil>0.26, 0.351</coil>
+      <coil>0.26, 0.364</coil>
+      <coil>0.26, 0.376</coil>
+      <coil>0.26, 0.389</coil>
+      <coil>0.26, 0.402</coil>
+      <coil>0.26, 0.414</coil>
+      <coil>0.26, -0.351</coil>
+      <coil>0.26, -0.364</coil>
+      <coil>0.26, -0.376</coil>
+      <coil>0.26, -0.389</coil>
+      <coil>0.26, -0.402</coil>
+      <coil>0.26, -0.414</coil>
+    </coil_set>    <coil_set current="-1.503410E+01">
+      <coil>0.679, 0.056</coil>
+      <coil>0.682, 0.069</coil>
+      <coil>0.740, 0.187</coil>
+      <coil>0.748, 0.199</coil>
+      <coil scale="-1">0.704, 0.124</coil>
+      <coil scale="-1">0.710, 0.136</coil>
+      <coil scale="-1">0.692, 0.130</coil>
+      <coil scale="-1">0.698, 0.142</coil>
+    </coil_set>
+  </coils>
+</psitri>

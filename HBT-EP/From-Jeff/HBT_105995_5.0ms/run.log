@@ -1,0 +1,201 @@
+#--------------------------------------------#
+PSI-Tri initialized
+Development branch:   wall_cleanup
+Revision id:          d1c420c
+# of OpenMP threads =    2
+Settings file       = psin                                    
+#--------------------------------------------#
+  Mesh Statistics:
+  np   =    1312
+  ne   =    3816
+  nc   =    2505
+  nbp  =     117
+  nbe  =     117
+  nbc  =     117
+  hmin =  4.762E-03
+  hrms =  1.525E-02
+  hmax =  2.133E-02
+
+
+  Loading external coils:
+  coil_file = HBT_coils.xml
+  Found    3 coil sets
+
+  Loading internal coil and wall regions:
+  coil_file = HBT_coils.xml
+  Found    0 conducting regions
+  Found    0 coil regions
+
+
+*** Initializing GS solution ***
+
+*** Loading flux and pressure profiles ***
+  Found  244 limiter points
+
+*** Loading fit constraints ***
+
+========================================
+  Starting Fit:
+  # of free parameters   =    5
+  # of constraints       =   64
+
+  Function evaluation    1
+  Alam              =  2.000E-01
+  P_scale           =  3.663E-01
+  R0_target         =  9.200E-01
+  Ext currents [%]  =  0.000E+00
+ -0.000E+00
+ -0.000E+00  0.000E+00
+ -0.000E+00
+ -0.000E+00  0.000E+00
+ -0.000E+00
+ -0.000E+00
+  Maximum Rel Error =  1.620E-01
+  Maximum Abs Error =  1.517E+03
+  Total Weighted Error   =  1.011E+01
+  RMS Weighted Error     =  1.264E+00
+
+  Function evaluation    2
+  Alam              =  2.000E-01
+  P_scale           =  3.688E-01
+  R0_target         =  9.200E-01
+  Ext currents [%]  =  0.000E+00
+ -0.000E+00
+ -0.000E+00  0.000E+00
+ -0.000E+00
+ -0.000E+00  0.000E+00
+ -0.000E+00
+ -0.000E+00
+  Maximum Rel Error =  1.697E-01
+  Maximum Abs Error =  1.608E+03
+  Total Weighted Error   =  1.084E+01
+  RMS Weighted Error     =  1.355E+00
+
+  Gradient evaluation     1
+  Function evaluation    3
+  Alam              =  7.527E-02
+  P_scale           =  4.036E-01
+  R0_target         =  9.262E-01
+  Ext currents [%]  = -9.262E-04
+  5.456E-03
+  8.136E-01  2.691E-04
+ -1.585E-03
+ -2.364E-01 -5.663E-06
+  3.336E-05
+  4.974E-03
+  Maximum Rel Error =  6.997E-02
+  Maximum Abs Error =  9.269E+02
+  Total Weighted Error   =  5.462E+00
+  RMS Weighted Error     =  6.827E-01
+
+  Gradient evaluation     2
+  Function evaluation    4
+  Alam              =  7.575E-02
+  P_scale           =  4.094E-01
+  R0_target         =  9.263E-01
+  Ext currents [%]  = -4.418E-04
+  2.603E-03
+  3.881E-01 -1.152E-03
+  6.786E-03
+  1.012E+00 -6.666E-06
+  3.927E-05
+  5.856E-03
+  Maximum Rel Error =  8.643E-02
+  Maximum Abs Error =  1.145E+03
+  Total Weighted Error   =  5.805E+00
+  RMS Weighted Error     =  7.256E-01
+
+  Function evaluation    5
+  Alam              =  7.575E-02
+  P_scale           =  4.094E-01
+  R0_target         =  9.263E-01
+  Ext currents [%]  = -4.418E-04
+  2.603E-03
+  3.881E-01 -1.152E-03
+  6.786E-03
+  1.012E+00 -6.666E-06
+  3.927E-05
+  5.856E-03
+  Maximum Rel Error =  8.641E-02
+  Maximum Abs Error =  1.145E+03
+  Total Weighted Error   =  5.810E+00
+  RMS Weighted Error     =  7.262E-01
+
+  Function evaluation    6
+  Alam              =  7.587E-02
+  P_scale           =  4.061E-01
+  R0_target         =  9.262E-01
+  Ext currents [%]  = -5.611E-04
+  3.305E-03
+  4.928E-01  2.293E-04
+ -1.351E-03
+ -2.014E-01 -5.218E-06
+  3.074E-05
+  4.583E-03
+  Maximum Rel Error =  7.737E-02
+  Maximum Abs Error =  1.025E+03
+  Total Weighted Error   =  5.501E+00
+  RMS Weighted Error     =  6.876E-01
+
+  Function evaluation    7
+  Alam              =  7.536E-02
+  P_scale           =  4.064E-01
+  R0_target         =  9.262E-01
+  Ext currents [%]  = -8.688E-04
+  5.118E-03
+  7.631E-01  2.633E-04
+ -1.551E-03
+ -2.313E-01 -5.592E-06
+  3.294E-05
+  4.912E-03
+  Maximum Rel Error =  7.694E-02
+  Maximum Abs Error =  1.019E+03
+  Total Weighted Error   =  5.498E+00
+  RMS Weighted Error     =  6.873E-01
+
+========================================
+  Fit Complete 
+  Final error          =  5.462E+00
+  Termination reason:  delta_rel(err) < xtol                                                           
+
+  Alam              =  7.527E-02
+  P_scale           =  4.064E-01
+  R0_target         =  9.262E-01
+  Ext currents [%]  = -9.262E-04
+  5.456E-03
+  8.136E-01  2.691E-04
+ -1.585E-03
+ -2.364E-01 -5.663E-06
+  3.336E-05
+  4.974E-03
+  Maximum Rel Error =  7.683E-02
+  Maximum Abs Error =  1.018E+03
+  Total Weighted Error   =  5.500E+00
+  RMS Weighted Error     =  6.875E-01
+
+
+*** Post-solution analysis ***
+
+  Equilibrium Statistics:
+  Flux Spec               =   (F^2)'
+  Topology                =   Limited
+  Toroidal Current [A]    =   1.427E+04
+  Current Centroid [m]    =   0.918  -0.000
+  Magnetic Axis [m]       =   0.926  -0.000
+  Elongation              =   1.05
+  Triangularity           =  -0.01
+  Plasma Volume [m^3]     =   0.43
+  q_0, q_95, q_a          =   1.78   3.15   3.37
+  Peak Pressure [Pa]      =   3.621E+02
+  Stored Energy [J]       =   7.899E+01
+  <Beta_pol> [%]          =   90.41
+  <Beta_tor> [%]          =    0.26
+  Diamagnetic flux [Wb]   =   3.683E-06
+  Toroidal flux [Wb]      =   2.603E-02
+
+  Saving EQDSK file
+
+#--------------------------------------------#
+Run complete 
+Run duration =   2.580E+00
+#--------------------------------------------#

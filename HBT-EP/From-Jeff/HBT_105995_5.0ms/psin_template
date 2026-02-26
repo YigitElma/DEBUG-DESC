@@ -1,0 +1,67 @@
+&runtime_options
+ debug=0
+/
+
+&mesh_options
+ meshname='hitsi'
+ cad_type=2
+ nlevels=2
+ nbase=2
+/
+
+&cubit_options
+ filename='HBT_block.g'
+/
+
+&lag_op_options
+ df_lop=1.1,.93,.8
+ nu_lop=64,2,1
+ df_dels=1.1,.93,.66
+ nu_dels=64,2,1
+/
+
+&psitri_check_options
+ order=-3
+/
+
+&psitri_gs_options
+ order=2
+ mode=1
+ pnorm=.6
+ alam=.2
+ itor_target=14.E3
+ urf=0.4
+ nl_tol=1.e-6
+ maxits=500
+ ninner=3
+ pm=F
+ free_boundary=T
+ coil_file='HBT_coils.xml'
+ limiter_file='HBT.limiter'
+ f_offset=0.315386 !0.340975 !0.2965
+! new f_offset={0}
+ rmin=.8
+ beta_mr=.11
+ R0_target=.92
+ eqdsk_nr=100
+ eqdsk_nz=100
+ eqdsk_rbounds=0.73,1.09
+ eqdsk_zbounds=-0.17,0.17
+/
+
+&psitri_fit_options
+ psinorm=1.
+ adjust_alam=T
+ adjust_pnorm=F
+ adjust_R0=T
+ adjust_coils=T
+ fixed_f={1}
+ fixed_p={2}
+/
+
+&gs_fit_options
+ epsfcn=1.E-4
+ xtol=1.E-4
+ ftol=1.E-4
+/
+
