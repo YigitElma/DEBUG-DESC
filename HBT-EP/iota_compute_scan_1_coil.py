@@ -21,6 +21,9 @@ from desc.backend import jnp
 import matplotlib.pyplot as plt
 from desc.plotting import poincare_plot
 
+plot_grid = LinearGrid(rho=1, M=20, N=60, NFP=1, endpoint=True)
+coil_grid = LinearGrid(N=30)
+
 
 def add_coils_to_plot(ax, fields, nplanes=6):
     fields = fields if isinstance(fields, list) else [fields]
@@ -80,23 +83,22 @@ def get_poincare_plot(
 
 R0 = 0.92
 B0 = 0.35
-
-plot_grid = LinearGrid(rho=1, M=20, N=60, NFP=1, endpoint=True)
-coil_grid = LinearGrid(N=30)
-tf = ToroidalMagneticField(B0=B0, R0=R0)
+ntransit = 200
+Nphi = 50
+xd = 0.02
+N = 10
+rmaj = 0.92
+rmin = 0.2
+axis_R = R0
+axis_Z = 0
+negative = False
 
 plasma_coil = FourierRZCoil(current=14000, R_n=R0, Z_n=0)
 tf = ToroidalMagneticField(B0=B0, R0=R0)
-xd = 0.02
-N = 10
 Z0is = jnp.zeros(N)
-ntransit = 200
-Nphi = 50
 phi = jnp.linspace(0, 2 * jnp.pi, Nphi, endpoint=False)
 phis = (phi + jnp.arange(0, ntransit)[:, None] * 2 * jnp.pi).flatten()
-rmaj = 0.98
-rmin = 0.2
-R0is = jnp.linspace(rmaj - 0.03, rmaj + rmin - xd, N)
+R0is = jnp.linspace(R0 + 0.03, rmaj + rmin - xd, N)
 
 field_just_plasma = SumMagneticField([plasma_coil, tf])
 fig, ax, data_plasma = get_poincare_plot(
@@ -127,8 +129,6 @@ for i, a in enumerate(keep_axes):
 fig.set_size_inches(12, 8)
 fig.tight_layout()
 
-axis_R = R0
-axis_Z = 0
 zs = data_plasma["Z"].reshape((ntransit * Nphi, -1))
 rs = data_plasma["R"].reshape((ntransit * Nphi, -1))
 iotas_just_plasma = []
@@ -152,7 +152,8 @@ iotas_just_plasma = jnp.array(iotas_just_plasma)
 name = f"1coil-R0-{R0}-B0-{B0}-rmaj-{rmaj}-rmin-{rmin}-Ip-{plasma_coil.current}"
 all_data = np.vstack([R0is, iotas_just_plasma])
 for Ic in [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000]:
-    # Ic *= -1
+    if negative:
+        Ic *= -1
     print(f"Plotting poincare plot of Ic={Ic}")
     umbilic_coil = get_umbilic_coil(I=Ic, rmaj=rmaj, rmin=rmin)
     field = SumMagneticField([plasma_coil, umbilic_coil, tf])
@@ -188,10 +189,7 @@ for Ic in [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000]:
 
     fig.set_size_inches(12, 8)
     fig.tight_layout()
-    fig.savefig(
-        f"./Scans/ft-{name}-Ic-{umbilic_coil.current}.png",
-        dpi=500,
-    )
+    fig.savefig(f"./Scans/ft-{name}-Ic-{Ic}.png", dpi=500)
     zs = data["Z"].reshape((ntransit * Nphi, -1))
     rs = data["R"].reshape((ntransit * Nphi, -1))
     iotas = []
@@ -214,20 +212,58 @@ for Ic in [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000]:
         iotas.append(iota)
     iotas = jnp.array(iotas)
     all_data = np.vstack([all_data, iotas])
-    indices = np.arange(len(R0is))[2:-1]
-    plt.figure()
-    plt.plot(R0is[indices], np.abs(iotas)[indices], label="w/ coil")
-    plt.plot(R0is[indices], np.abs(iotas_just_plasma)[indices], label="w/o coil")
-    plt.title("Absolute value of Iota")
-    plt.ylabel("abs(iota)")
-    plt.xlabel("Radial distance of initial Point")
-    plt.legend()
-    plt.savefig(
-        f"./Scans/iota-{name}-Ic-{umbilic_coil.current}.png",
-        dpi=500,
+
+
+def plot_iotas(data):
+    r = data[0, :]
+    base = data[1, :]
+    indices = np.arange(len(base))[3:-1]
+    currents = np.arange(1, 10)
+    plt.plot(
+        r[indices], np.abs(base)[indices], label="No Current", color="navy", linewidth=2
     )
+    for i, di in enumerate(data[2:, :]):
+        last_not_nan_idx = np.where(
+            ~np.isnan(di[indices]), np.arange(len(indices)), 0
+        ).max()
+        percent = (
+            100
+            * (
+                np.abs(di)[indices][last_not_nan_idx]
+                - np.abs(base)[indices][last_not_nan_idx]
+            )
+            / np.abs(base)[indices][last_not_nan_idx]
+        )
+        plt.plot(
+            r[indices],
+            np.abs(di)[indices],
+            label=f"{currents[i]} kA, ({percent:.2f}%)",
+            color=plt.cm.Blues(0.8 - 0.6 * i / (len(data) - 2)),
+        )
+
+    plt.xlabel("R (m)")
+    plt.ylabel("|Iota|")
+    plt.title("Ip=14kA, B0=0.35T, 1 Umbilic Coil")
+    plt.legend()
+    plt.grid(True, alpha=0.3)
+
 
 np.savetxt(
-    f"./Scans/data-1coil-{name}-Ic-1-9kA.txt",
+    (
+        f"./Scans/data-{name}-Ic-1-9kA.txt"
+        if not negative
+        else f"./Scans/data-{name}-Ic-n1-9kA.txt"
+    ),
     all_data,
+)
+
+plt.figure()
+plot_iotas(all_data)
+plt.savefig(
+    (
+        f"./Scans/iotas-{name}-Ic-1-9kA.png"
+        if not negative
+        else f"./Scans/iotas-{name}-Ic-n1-9kA.png"
+    ),
+    dpi=500,
 )
