@@ -87,13 +87,13 @@ ntransit = 200
 Nphi = 50
 xd = 0.02
 N = 10
-rmaj = 0.92
+rmaj = 0.97
 rmin = 0.2
 axis_R = R0
 axis_Z = 0
 negative = False
 
-plasma_coil = FourierRZCoil(current=14000, R_n=R0, Z_n=0)
+plasma_coil = FourierRZCoil(current=25000, R_n=R0, Z_n=0)
 tf = ToroidalMagneticField(B0=B0, R0=R0)
 Z0is = jnp.zeros(N)
 phi = jnp.linspace(0, 2 * jnp.pi, Nphi, endpoint=False)
