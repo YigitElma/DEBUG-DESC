@@ -61,7 +61,6 @@ for w_qs in weights_qs:
 #SBATCH --time=00:45:00
 #SBATCH --gres=gpu:1
 #SBATCH --constraint=nomig
-#SBATCH -o ./scan_QA_maxV/slurm_{file_identifier}.out
 
 module purge
 module load anaconda3/2024.10

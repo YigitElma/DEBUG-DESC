@@ -86,6 +86,7 @@ file_identifier = (
 )
 results_dir = "./scan_QA_maxV"
 
+print(file_identifier)
 
 def run_step(n, eqfam, ftol=1e-2, **kwargs):
     objective = ObjectiveFunction(
