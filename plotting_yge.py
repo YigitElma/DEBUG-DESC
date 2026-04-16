@@ -37,7 +37,7 @@ def plot_grid_3d(eq, grid, fig=None, **kwargs):
 def plot_coil_and_surfaces(eq, coils, **kwargs):
     if not isinstance(coils, (list, tuple)):
         coils = [coils]
-    datas = [coil.compute(["R", "Z", "phi"], grid=LinearGrid(zeta=6)) for coil in coils]
+    datas = [coil.compute(["R", "Z", "phi"], grid=LinearGrid(zeta=6, NFP=eq.NFP)) for coil in coils]
     colors = kwargs.pop("colors", sequential_colors)
     if not isinstance(colors, (list, tuple)):
         colors = [colors] * len(coils)
